@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+*.log
+results/
+*.bag
+*.db3
+*.mcap
+.DS_Store

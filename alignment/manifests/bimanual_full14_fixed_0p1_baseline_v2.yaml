@@ -1,0 +1,47 @@
+trial_id: openarm_real_sim_bimanual_fixed_0p1_full14_v2
+mode: measure
+execution:
+  order:
+    - openarm_left_joint1
+    - openarm_left_joint2
+    - openarm_left_joint3
+    - openarm_left_joint4
+    - openarm_left_joint5
+    - openarm_left_joint6
+    - openarm_left_joint7
+    - openarm_right_joint1
+    - openarm_right_joint2
+    - openarm_right_joint3
+    - openarm_right_joint4
+    - openarm_right_joint5
+    - openarm_right_joint6
+    - openarm_right_joint7
+  concurrency: 1
+  between_joints_s: 1.0
+canonical_action:
+  target_definition: absolute_target_rad
+  target_rad: 0.1
+  nonselected_joints: hold_measured_real_start
+  router_real_publish_hz: 50.0
+  target_hold_s: 3.0
+  return_target: measured_real_initial_position
+  return_hold_s: 1.0
+  sim_target_tolerance_rad: 0.01
+safety:
+  real_authorization_required: true
+  real_authorization_id: openarm_real_sim_bimanual_fixed_0p1_full14_v2
+  maximum_per_joint_excursion_rad: 0.15
+  max_router_delta_rad: 0.15
+  real_state_max_age_s: 0.25
+  single_command_route: true
+  abort_on:
+    - stale_or_missing_real_joint_state
+    - stale_or_missing_sim_joint_state
+    - simulation_target_tracking_error_exceeds_0p01_rad
+    - multiple_real_command_publishers
+    - target_outside_mechanical_limits
+    - per_joint_excursion_exceeds_0p15_rad
+    - operator_stop
+recording:
+  output_directory: alignment/results/openarm_real_sim_bimanual_fixed_0p1_full14_v2
+  observation_requirement: operator_or_camera_confirms_visible_real_motion

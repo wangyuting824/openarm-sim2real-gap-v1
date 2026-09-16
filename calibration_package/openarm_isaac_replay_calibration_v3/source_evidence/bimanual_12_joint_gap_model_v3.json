@@ -1,0 +1,2805 @@
+{
+  "schema_version": 1,
+  "kind": "openarm_sim2real_gap_model_candidates",
+  "safety": "offline candidates only; no USD, URDF, Isaac drive, or real-command mutation was performed",
+  "joints": [
+    {
+      "joint": "openarm_left_joint1",
+      "usable_samples": 18,
+      "distinct_sim_positions": [
+        -0.06269,
+        -0.01329,
+        -0.01328,
+        -0.01327,
+        -0.01325,
+        -0.01324,
+        -0.01323,
+        0.03615,
+        0.03616,
+        0.08557,
+        0.08558,
+        0.08559
+      ],
+      "fit": {
+        "model": "q_real = a*q_sim + b + h_positive*I(positive) + h_negative*I(negative)",
+        "rank": 4,
+        "a": 0.8318519012267828,
+        "b_rad": 0.0005081544897580974,
+        "h_positive_rad": -0.0010143633046038444,
+        "h_negative_rad": 0.00016681456998685507,
+        "residual_std_rad": 0.0025169452935111638
+      },
+      "evidence": {
+        "gap_median_rad": 0.0018210648532388518,
+        "gap_std_rad": 0.008751072693695922,
+        "positive_gap_median_rad": -0.0069680608508218,
+        "negative_gap_median_rad": 0.0073308256673829675,
+        "hold_gap_median_rad": -0.005440321627373734,
+        "positive_minus_negative_gap_rad": -0.014298886518204768,
+        "positive_samples": 6,
+        "negative_samples": 9,
+        "hold_samples": 3
+      },
+      "classification": [
+        "scale_or_transmission_candidate",
+        "directional_backlash_or_friction_candidate"
+      ],
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      },
+      "Isaac_candidate_remediation": [
+        {
+          "layer": "Isaac_mapping_review",
+          "action": "Audit radians/degrees, joint axis sign, transmission ratio, drive target units, and joint limits. Do not edit USD/URDF until replay validation passes."
+        },
+        {
+          "layer": "stateful_replay_or_control_model",
+          "action": "Keep separate positive/negative approach corrections; model friction/deadband/backlash in the Isaac control wrapper or randomization, not as a single URDF zero offset."
+        },
+        {
+          "layer": "dynamic_delay",
+          "action": "Not identifiable from settled endpoints alone. Fit command-to-response timing from timestamped ramps, then emulate command/observation delay with buffers and matching control rate in Isaac."
+        }
+      ],
+      "rows": [
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint1.json",
+          "repetition": 1,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.03645761806668198,
+          "q_real_rad": 0.03032730601968403,
+          "q_sim_rad": 0.03616223484277725,
+          "gap_rad": -0.005834928823093222,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint1.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.013542381933318026,
+          "q_real_rad": -0.013923857480735435,
+          "q_sim_rad": -0.013252630829811096,
+          "gap_rad": -0.0006712266509243392,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint1.json",
+          "repetition": 1,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.06354238193331803,
+          "q_real_rad": -0.05512321660181563,
+          "q_sim_rad": -0.06268781423568726,
+          "gap_rad": 0.007564597633871628,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint1.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.013542381933318026,
+          "q_real_rad": -0.011253528648813571,
+          "q_sim_rad": -0.013275823555886745,
+          "gap_rad": 0.0020222949070731744,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint1.json",
+          "repetition": 1,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.08645761806668198,
+          "q_real_rad": 0.06961928740367718,
+          "q_sim_rad": 0.08558635413646698,
+          "gap_rad": -0.015967066732789803,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint1.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.013542381933318026,
+          "q_real_rad": -0.005912870984969842,
+          "q_sim_rad": -0.01324369665235281,
+          "gap_rad": 0.0073308256673829675,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint1.json",
+          "repetition": 2,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.03645761806668198,
+          "q_real_rad": 0.03070878156710144,
+          "q_sim_rad": 0.036145955324172974,
+          "gap_rad": -0.005437173757071534,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint1.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.013542381933318026,
+          "q_real_rad": -0.01163500419623098,
+          "q_sim_rad": -0.013252627104520798,
+          "gap_rad": 0.0016176229082898175,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint1.json",
+          "repetition": 2,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.06354238193331803,
+          "q_real_rad": -0.05321583886472858,
+          "q_sim_rad": -0.06268779933452606,
+          "gap_rad": 0.00947196046979748,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint1.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.013542381933318026,
+          "q_real_rad": -0.008583199816891707,
+          "q_sim_rad": -0.013274294324219227,
+          "gap_rad": 0.00469109450732752,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint1.json",
+          "repetition": 2,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.08645761806668198,
+          "q_real_rad": 0.06923781185625977,
+          "q_sim_rad": 0.08557076752185822,
+          "gap_rad": -0.016332955665598448,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint1.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.013542381933318026,
+          "q_real_rad": -0.005912870984969842,
+          "q_sim_rad": -0.013245249167084694,
+          "gap_rad": 0.0073323781821148515,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint1.json",
+          "repetition": 3,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.03645761806668198,
+          "q_real_rad": 0.03070878156710144,
+          "q_sim_rad": 0.036149103194475174,
+          "gap_rad": -0.005440321627373734,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint1.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.013542381933318026,
+          "q_real_rad": -0.01163500419623098,
+          "q_sim_rad": -0.01325483899563551,
+          "gap_rad": 0.0016198347994045292,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint1.json",
+          "repetition": 3,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.06354238193331803,
+          "q_real_rad": -0.05321583886472858,
+          "q_sim_rad": -0.06269093602895737,
+          "gap_rad": 0.009475097164228785,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint1.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.013542381933318026,
+          "q_real_rad": -0.011253528648813571,
+          "q_sim_rad": -0.0132910730317235,
+          "gap_rad": 0.0020375443829099282,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint1.json",
+          "repetition": 3,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.08645761806668198,
+          "q_real_rad": 0.06961928740367718,
+          "q_sim_rad": 0.08557770401239395,
+          "gap_rad": -0.015958416608716774,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint1.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.013542381933318026,
+          "q_real_rad": -0.005912870984969842,
+          "q_sim_rad": -0.013234550133347511,
+          "gap_rad": 0.007321679148377669,
+          "approach_direction": "negative"
+        }
+      ]
+    },
+    {
+      "joint": "openarm_left_joint2",
+      "usable_samples": 18,
+      "distinct_sim_positions": [
+        -0.05883,
+        -0.00901,
+        -0.009,
+        -0.00897,
+        -0.00896,
+        -0.00894,
+        0.04086,
+        0.04087,
+        0.09071,
+        0.09072
+      ],
+      "fit": {
+        "model": "q_real = a*q_sim + b + h_positive*I(positive) + h_negative*I(negative)",
+        "rank": 4,
+        "a": 0.8591103963260629,
+        "b_rad": -0.0002015024399200153,
+        "h_positive_rad": -0.0020899026595767303,
+        "h_negative_rad": -0.0017444479519866567,
+        "residual_std_rad": 0.0016098009926674734
+      },
+      "evidence": {
+        "gap_median_rad": -0.002286646401335801,
+        "gap_std_rad": 0.006914967338963471,
+        "positive_gap_median_rad": -0.008048421695640684,
+        "negative_gap_median_rad": -0.0022797858135898963,
+        "hold_gap_median_rad": -0.00519534164674873,
+        "positive_minus_negative_gap_rad": -0.005768635882050788,
+        "positive_samples": 6,
+        "negative_samples": 9,
+        "hold_samples": 3
+      },
+      "classification": [
+        "scale_or_transmission_candidate"
+      ],
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      },
+      "Isaac_candidate_remediation": [
+        {
+          "layer": "Isaac_mapping_review",
+          "action": "Audit radians/degrees, joint axis sign, transmission ratio, drive target units, and joint limits. Do not edit USD/URDF until replay validation passes."
+        },
+        {
+          "layer": "dynamic_delay",
+          "action": "Not identifiable from settled endpoints alone. Fit command-to-response timing from timestamped ramps, then emulate command/observation delay with buffers and matching control rate in Isaac."
+        }
+      ],
+      "rows": [
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint2.json",
+          "repetition": 1,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.04103532463569089,
+          "q_real_rad": 0.03566796368352776,
+          "q_sim_rad": 0.04086259752511978,
+          "gap_rad": -0.005194633841592022,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint2.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.008964675364309116,
+          "q_real_rad": -0.011253528648813571,
+          "q_sim_rad": -0.008973742835223675,
+          "gap_rad": -0.0022797858135898963,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint2.json",
+          "repetition": 1,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.05896467536430912,
+          "q_real_rad": -0.05016403448538931,
+          "q_sim_rad": -0.058833036571741104,
+          "gap_rad": 0.008669002086351796,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint2.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.008964675364309116,
+          "q_real_rad": -0.011253528648813571,
+          "q_sim_rad": -0.009002074599266052,
+          "gap_rad": -0.002251454049547519,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint2.json",
+          "repetition": 1,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.09103532463569089,
+          "q_real_rad": 0.07686732280460795,
+          "q_sim_rad": 0.09071053564548492,
+          "gap_rad": -0.013843212840876973,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint2.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.008964675364309116,
+          "q_real_rad": -0.011253528648813571,
+          "q_sim_rad": -0.008957579731941223,
+          "gap_rad": -0.002295948916872348,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint2.json",
+          "repetition": 2,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.04103532463569089,
+          "q_real_rad": 0.03566796368352776,
+          "q_sim_rad": 0.04086330533027649,
+          "gap_rad": -0.00519534164674873,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint2.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.008964675364309116,
+          "q_real_rad": -0.008964675364309116,
+          "q_sim_rad": -0.008971555158495903,
+          "gap_rad": 6.8797941867870804e-06,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint2.json",
+          "repetition": 2,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.05896467536430912,
+          "q_real_rad": -0.0497825589379719,
+          "q_sim_rad": -0.05882997065782547,
+          "gap_rad": 0.00904741171985357,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint2.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.008964675364309116,
+          "q_real_rad": -0.011253528648813571,
+          "q_sim_rad": -0.008999898098409176,
+          "gap_rad": -0.002253630550404395,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint2.json",
+          "repetition": 2,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.09103532463569089,
+          "q_real_rad": 0.07686732280460795,
+          "q_sim_rad": 0.09071357548236847,
+          "gap_rad": -0.013846252677760518,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint2.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.008964675364309116,
+          "q_real_rad": -0.011253528648813571,
+          "q_sim_rad": -0.008962210267782211,
+          "gap_rad": -0.0022913183810313598,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint2.json",
+          "repetition": 3,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.04103532463569089,
+          "q_real_rad": 0.033379110399023304,
+          "q_sim_rad": 0.040865495800971985,
+          "gap_rad": -0.007486385401948681,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint2.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.008964675364309116,
+          "q_real_rad": -0.011253528648813571,
+          "q_sim_rad": -0.008971554227173328,
+          "gap_rad": -0.0022819744216402427,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint2.json",
+          "repetition": 3,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.05896467536430912,
+          "q_real_rad": -0.05016403448538931,
+          "q_sim_rad": -0.05882996693253517,
+          "gap_rad": 0.008665932447145863,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint2.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.008964675364309116,
+          "q_real_rad": -0.011253528648813571,
+          "q_sim_rad": -0.009012495167553425,
+          "gap_rad": -0.0022410334812601462,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint2.json",
+          "repetition": 3,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.09103532463569089,
+          "q_real_rad": 0.07686732280460795,
+          "q_sim_rad": 0.09071579575538635,
+          "gap_rad": -0.013848472950778401,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint2.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.008964675364309116,
+          "q_real_rad": -0.011253528648813571,
+          "q_sim_rad": -0.008942760527133942,
+          "gap_rad": -0.0023107681216796294,
+          "approach_direction": "negative"
+        }
+      ]
+    },
+    {
+      "joint": "openarm_left_joint3",
+      "usable_samples": 18,
+      "distinct_sim_positions": [
+        -0.06587,
+        -0.06586,
+        -0.0159,
+        -0.01589,
+        -0.01587,
+        -0.01586,
+        -0.01585,
+        -0.01584,
+        0.03411,
+        0.03414,
+        0.08408,
+        0.08409,
+        0.0841
+      ],
+      "fit": {
+        "model": "q_real = a*q_sim + b + h_positive*I(positive) + h_negative*I(negative)",
+        "rank": 4,
+        "a": 0.9623719018542339,
+        "b_rad": -0.013061900633914752,
+        "h_positive_rad": 0.00250152897263964,
+        "h_negative_rad": 0.01937809141344294,
+        "residual_std_rad": 0.003311881914486014
+      },
+      "evidence": {
+        "gap_median_rad": -0.002034503161654655,
+        "gap_std_rad": 0.011025851333060797,
+        "positive_gap_median_rad": -0.01196545129126747,
+        "negative_gap_median_rad": 0.009543514692621713,
+        "hold_gap_median_rad": -0.014462826885365487,
+        "positive_minus_negative_gap_rad": -0.021508965983889183,
+        "positive_samples": 6,
+        "negative_samples": 9,
+        "hold_samples": 3
+      },
+      "classification": [
+        "scale_or_transmission_candidate",
+        "directional_backlash_or_friction_candidate"
+      ],
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      },
+      "Isaac_candidate_remediation": [
+        {
+          "layer": "Isaac_mapping_review",
+          "action": "Audit radians/degrees, joint axis sign, transmission ratio, drive target units, and joint limits. Do not edit USD/URDF until replay validation passes."
+        },
+        {
+          "layer": "stateful_replay_or_control_model",
+          "action": "Keep separate positive/negative approach corrections; model friction/deadband/backlash in the Isaac control wrapper or randomization, not as a single URDF zero offset."
+        },
+        {
+          "layer": "dynamic_delay",
+          "action": "Not identifiable from settled endpoints alone. Fit command-to-response timing from timestamped ramps, then emulate command/observation delay with buffers and matching control rate in Isaac."
+        }
+      ],
+      "rows": [
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint3.json",
+          "repetition": 1,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.03416876478217752,
+          "q_real_rad": 0.019645990691996573,
+          "q_sim_rad": 0.03414134681224823,
+          "gap_rad": -0.014495356120251657,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint3.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.01583123521782248,
+          "q_real_rad": -0.005912870984969842,
+          "q_sim_rad": -0.01587011106312275,
+          "gap_rad": 0.009957240078152907,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint3.json",
+          "repetition": 1,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.06583123521782248,
+          "q_real_rad": -0.06313420309758122,
+          "q_sim_rad": -0.06586463004350662,
+          "gap_rad": 0.0027304269459254016,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint3.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.01583123521782248,
+          "q_real_rad": -0.022697795071335847,
+          "q_sim_rad": -0.015898361802101135,
+          "gap_rad": -0.0067994332692347115,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint3.json",
+          "repetition": 1,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.08416876478217752,
+          "q_real_rad": 0.06771190966659013,
+          "q_sim_rad": 0.08407574146986008,
+          "gap_rad": -0.016363831803269946,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint3.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.01583123521782248,
+          "q_real_rad": -0.006294346532387252,
+          "q_sim_rad": -0.015850374475121498,
+          "gap_rad": 0.009556027942734246,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint3.json",
+          "repetition": 2,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.03416876478217752,
+          "q_real_rad": 0.019645990691996573,
+          "q_sim_rad": 0.03410881757736206,
+          "gap_rad": -0.014462826885365487,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint3.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.01583123521782248,
+          "q_real_rad": -0.005912870984969842,
+          "q_sim_rad": -0.01585889793932438,
+          "gap_rad": 0.009946026954354537,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint3.json",
+          "repetition": 2,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.06583123521782248,
+          "q_real_rad": -0.0623712520027464,
+          "q_sim_rad": -0.06586793065071106,
+          "gap_rad": 0.003496678647964657,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint3.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.01583123521782248,
+          "q_real_rad": -0.023460746166170665,
+          "q_sim_rad": -0.01589367538690567,
+          "gap_rad": -0.007567070779264995,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint3.json",
+          "repetition": 2,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.08416876478217752,
+          "q_real_rad": 0.06733043411917272,
+          "q_sim_rad": 0.08408600836992264,
+          "gap_rad": -0.016755574250749916,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint3.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.01583123521782248,
+          "q_real_rad": -0.006294346532387252,
+          "q_sim_rad": -0.015837861225008965,
+          "gap_rad": 0.009543514692621713,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint3.json",
+          "repetition": 3,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.03416876478217752,
+          "q_real_rad": 0.020027466239413982,
+          "q_sim_rad": 0.03410647064447403,
+          "gap_rad": -0.014079004405060047,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint3.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.01583123521782248,
+          "q_real_rad": -0.005912870984969842,
+          "q_sim_rad": -0.015865428373217583,
+          "gap_rad": 0.00995255738824774,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint3.json",
+          "repetition": 3,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.06583123521782248,
+          "q_real_rad": -0.0623712520027464,
+          "q_sim_rad": -0.06586793065071106,
+          "gap_rad": 0.003496678647964657,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint3.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.01583123521782248,
+          "q_real_rad": -0.023079270618753256,
+          "q_sim_rad": -0.015892017632722855,
+          "gap_rad": -0.007187252986030401,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint3.json",
+          "repetition": 3,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.08416876478217752,
+          "q_real_rad": 0.06771190966659013,
+          "q_sim_rad": 0.08409880101680756,
+          "gap_rad": -0.016386891350217425,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint3.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.01583123521782248,
+          "q_real_rad": -0.006675822079804661,
+          "q_sim_rad": -0.015857668593525887,
+          "gap_rad": 0.009181846513721226,
+          "approach_direction": "negative"
+        }
+      ]
+    },
+    {
+      "joint": "openarm_left_joint4",
+      "usable_samples": 15,
+      "distinct_sim_positions": [
+        0.01614,
+        0.01615,
+        0.06585,
+        0.06588,
+        0.11558
+      ],
+      "fit": {
+        "model": "q_real = a*q_sim + b + h_positive*I(positive) + h_negative*I(negative)",
+        "rank": 4,
+        "a": 0.9255370307593102,
+        "b_rad": -0.0020110844246585603,
+        "h_positive_rad": 0.005094915413158763,
+        "h_negative_rad": 0.004044323801166567,
+        "residual_std_rad": 0.0003331701623712106
+      },
+      "evidence": {
+        "gap_median_rad": -0.0027465723540789355,
+        "gap_std_rad": 0.0033126353533139453,
+        "positive_gap_median_rad": -0.005522777184365779,
+        "negative_gap_median_rad": 0.00045199680994123526,
+        "hold_gap_median_rad": -0.007294871481471787,
+        "positive_minus_negative_gap_rad": -0.005974773994307014,
+        "positive_samples": 3,
+        "negative_samples": 9,
+        "hold_samples": 3
+      },
+      "classification": [
+        "static_offset_candidate",
+        "scale_or_transmission_candidate"
+      ],
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      },
+      "Isaac_candidate_remediation": [
+        {
+          "layer": "compare_or_replay",
+          "action": "Use q_sim_corrected = a*q_sim + b only in a versioned replay/compare transform; validate on held-out repetitions."
+        },
+        {
+          "layer": "Isaac_mapping_review",
+          "action": "Audit radians/degrees, joint axis sign, transmission ratio, drive target units, and joint limits. Do not edit USD/URDF until replay validation passes."
+        },
+        {
+          "layer": "dynamic_delay",
+          "action": "Not identifiable from settled endpoints alone. Fit command-to-response timing from timestamped ramps, then emulate command/observation delay with buffers and matching control rate in Isaac."
+        }
+      ],
+      "rows": [
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint4.json",
+          "repetition": 1,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.0665941863126573,
+          "q_real_rad": 0.05855649652857231,
+          "q_sim_rad": 0.0658513680100441,
+          "gap_rad": -0.007294871481471787,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint4.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.0165941863126573,
+          "q_real_rad": 0.0165941863126573,
+          "q_sim_rad": 0.016142189502716064,
+          "gap_rad": 0.00045199680994123526,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint4.json",
+          "repetition": 1,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.1165941863126573,
+          "q_real_rad": 0.11005569542992255,
+          "q_sim_rad": 0.11558055132627487,
+          "gap_rad": -0.005524855896352321,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint4.json",
+          "repetition": 1,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.0665941863126573,
+          "q_real_rad": 0.06275272755016381,
+          "q_sim_rad": 0.06588078290224075,
+          "gap_rad": -0.0031280553520769416,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint4.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.0165941863126573,
+          "q_real_rad": 0.01697566186007471,
+          "q_sim_rad": 0.01614431105554104,
+          "gap_rad": 0.0008313508045336704,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint4.json",
+          "repetition": 2,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.0665941863126573,
+          "q_real_rad": 0.05855649652857231,
+          "q_sim_rad": 0.06585327535867691,
+          "gap_rad": -0.0072967788301046,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint4.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.0165941863126573,
+          "q_real_rad": 0.0165941863126573,
+          "q_sim_rad": 0.01614728383719921,
+          "gap_rad": 0.0004469024754580886,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint4.json",
+          "repetition": 2,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.1165941863126573,
+          "q_real_rad": 0.11005569542992255,
+          "q_sim_rad": 0.11557544767856598,
+          "gap_rad": -0.005519752248643428,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint4.json",
+          "repetition": 2,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.0665941863126573,
+          "q_real_rad": 0.06313420309758122,
+          "q_sim_rad": 0.0658765584230423,
+          "gap_rad": -0.0027423553254610766,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint4.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.0165941863126573,
+          "q_real_rad": 0.01697566186007471,
+          "q_sim_rad": 0.016147300601005554,
+          "gap_rad": 0.0008283612590691547,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint4.json",
+          "repetition": 3,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.0665941863126573,
+          "q_real_rad": 0.05970092317082454,
+          "q_sim_rad": 0.06585327535867691,
+          "gap_rad": -0.006152352187852372,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint4.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.0165941863126573,
+          "q_real_rad": 0.017357137407492118,
+          "q_sim_rad": 0.016142191365361214,
+          "gap_rad": 0.0012149460421309044,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint4.json",
+          "repetition": 3,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.1165941863126573,
+          "q_real_rad": 0.11005569542992255,
+          "q_sim_rad": 0.11557847261428833,
+          "gap_rad": -0.005522777184365779,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint4.json",
+          "repetition": 3,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.0665941863126573,
+          "q_real_rad": 0.06313420309758122,
+          "q_sim_rad": 0.06588077545166016,
+          "gap_rad": -0.0027465723540789355,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint4.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.0165941863126573,
+          "q_real_rad": 0.017357137407492118,
+          "q_sim_rad": 0.01614432781934738,
+          "gap_rad": 0.0012128095881447365,
+          "approach_direction": "negative"
+        }
+      ]
+    },
+    {
+      "joint": "openarm_left_joint5",
+      "usable_samples": 18,
+      "distinct_sim_positions": [
+        -0.05624,
+        -0.05623,
+        -0.00627,
+        -0.00626,
+        -0.00623,
+        -0.00622,
+        -0.00621,
+        0.04374,
+        0.04375,
+        0.09371,
+        0.09373,
+        0.09374
+      ],
+      "fit": {
+        "model": "q_real = a*q_sim + b + h_positive*I(positive) + h_negative*I(negative)",
+        "rank": 4,
+        "a": 0.9854419143472439,
+        "b_rad": -0.014941660483942423,
+        "h_positive_rad": 0.0014103068157307504,
+        "h_negative_rad": 0.02654706501413453,
+        "residual_std_rad": 0.002749008448429156
+      },
+      "evidence": {
+        "gap_median_rad": -0.003500728742162451,
+        "gap_std_rad": 0.013964615154122928,
+        "positive_gap_median_rad": -0.014173465657615125,
+        "negative_gap_median_rad": 0.013672767092343108,
+        "hold_gap_median_rad": -0.015701592544084875,
+        "positive_minus_negative_gap_rad": -0.027846232749958233,
+        "positive_samples": 6,
+        "negative_samples": 9,
+        "hold_samples": 3
+      },
+      "classification": [
+        "directional_backlash_or_friction_candidate"
+      ],
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      },
+      "Isaac_candidate_remediation": [
+        {
+          "layer": "stateful_replay_or_control_model",
+          "action": "Keep separate positive/negative approach corrections; model friction/deadband/backlash in the Isaac control wrapper or randomization, not as a single URDF zero offset."
+        },
+        {
+          "layer": "dynamic_delay",
+          "action": "Not identifiable from settled endpoints alone. Fit command-to-response timing from timestamped ramps, then emulate command/observation delay with buffers and matching control rate in Isaac."
+        }
+      ],
+      "rows": [
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint5.json",
+          "repetition": 1,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.04408712901503016,
+          "q_real_rad": 0.028419928282596985,
+          "q_sim_rad": 0.043742261826992035,
+          "gap_rad": -0.01532233354439505,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint5.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.005912870984969842,
+          "q_real_rad": 0.000953688868543523,
+          "q_sim_rad": -0.006233995780348778,
+          "gap_rad": 0.007187684648892301,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint5.json",
+          "repetition": 1,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.055912870984969845,
+          "q_real_rad": -0.04062714579995408,
+          "q_sim_rad": -0.056242939084768295,
+          "gap_rad": 0.015615793284814217,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint5.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.005912870984969842,
+          "q_real_rad": -0.02117189288166621,
+          "q_sim_rad": -0.0062691508792340755,
+          "gap_rad": -0.014902742002432134,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint5.json",
+          "repetition": 1,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.09408712901503016,
+          "q_real_rad": 0.08030060273136463,
+          "q_sim_rad": 0.09370628744363785,
+          "gap_rad": -0.013405684712273214,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint5.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.005912870984969842,
+          "q_real_rad": 0.007820248722056888,
+          "q_sim_rad": -0.006225196179002523,
+          "gap_rad": 0.014045444901059412,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint5.json",
+          "repetition": 2,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.04408712901503016,
+          "q_real_rad": 0.028038452735179575,
+          "q_sim_rad": 0.04374999925494194,
+          "gap_rad": -0.015711546519762365,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint5.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.005912870984969842,
+          "q_real_rad": 0.007438773174639479,
+          "q_sim_rad": -0.0062339939177036285,
+          "gap_rad": 0.013672767092343108,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint5.json",
+          "repetition": 2,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.055912870984969845,
+          "q_real_rad": -0.04100862134737149,
+          "q_sim_rad": -0.056242939084768295,
+          "gap_rad": 0.015234317737396808,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint5.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.005912870984969842,
+          "q_real_rad": -0.02117189288166621,
+          "q_sim_rad": -0.006263359449803829,
+          "gap_rad": -0.01490853343186238,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint5.json",
+          "repetition": 2,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.09408712901503016,
+          "q_real_rad": 0.08030060273136463,
+          "q_sim_rad": 0.09373483806848526,
+          "gap_rad": -0.013434235337120626,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint5.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.005912870984969842,
+          "q_real_rad": 0.007438773174639479,
+          "q_sim_rad": -0.006213494576513767,
+          "gap_rad": 0.013652267751153246,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint5.json",
+          "repetition": 3,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.04408712901503016,
+          "q_real_rad": 0.028038452735179575,
+          "q_sim_rad": 0.04374004527926445,
+          "gap_rad": -0.015701592544084875,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint5.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.005912870984969842,
+          "q_real_rad": 0.0001907377737087046,
+          "q_sim_rad": -0.006220110692083836,
+          "gap_rad": 0.00641084846579254,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint5.json",
+          "repetition": 3,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.055912870984969845,
+          "q_real_rad": -0.04100862134737149,
+          "q_sim_rad": -0.05623374879360199,
+          "gap_rad": 0.015225127446230502,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint5.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.005912870984969842,
+          "q_real_rad": -0.02117189288166621,
+          "q_sim_rad": -0.006259198300540447,
+          "gap_rad": -0.014912694581125763,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint5.json",
+          "repetition": 3,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.09408712901503016,
+          "q_real_rad": 0.08030060273136463,
+          "q_sim_rad": 0.09374479204416275,
+          "gap_rad": -0.013444189312798116,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint5.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.005912870984969842,
+          "q_real_rad": 0.0001907377737087046,
+          "q_sim_rad": -0.006213489454239607,
+          "gap_rad": 0.0064042272279483115,
+          "approach_direction": "negative"
+        }
+      ]
+    },
+    {
+      "joint": "openarm_left_joint6",
+      "usable_samples": 18,
+      "distinct_sim_positions": [
+        -0.03491,
+        -0.0349,
+        0.01504,
+        0.01508,
+        0.01509,
+        0.0151,
+        0.01513,
+        0.06504,
+        0.06505,
+        0.11501,
+        0.11502
+      ],
+      "fit": {
+        "model": "q_real = a*q_sim + b + h_positive*I(positive) + h_negative*I(negative)",
+        "rank": 4,
+        "a": 0.9857013139488136,
+        "b_rad": -0.018906311443785698,
+        "h_positive_rad": 0.001857797150932249,
+        "h_negative_rad": 0.025267800474002424,
+        "residual_std_rad": 0.002272514225203441
+      },
+      "evidence": {
+        "gap_median_rad": -0.006703183739826812,
+        "gap_std_rad": 0.013077041853883222,
+        "positive_gap_median_rad": -0.018103715254245145,
+        "negative_gap_median_rad": 0.005712422197868605,
+        "hold_gap_median_rad": -0.0198346705769179,
+        "positive_minus_negative_gap_rad": -0.02381613745211375,
+        "positive_samples": 6,
+        "negative_samples": 9,
+        "hold_samples": 3
+      },
+      "classification": [
+        "directional_backlash_or_friction_candidate"
+      ],
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      },
+      "Isaac_candidate_remediation": [
+        {
+          "layer": "stateful_replay_or_control_model",
+          "action": "Keep separate positive/negative approach corrections; model friction/deadband/backlash in the Isaac control wrapper or randomization, not as a single URDF zero offset."
+        },
+        {
+          "layer": "dynamic_delay",
+          "action": "Not identifiable from settled endpoints alone. Fit command-to-response timing from timestamped ramps, then emulate command/observation delay with buffers and matching control rate in Isaac."
+        }
+      ],
+      "rows": [
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint6.json",
+          "repetition": 1,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.06506828412298767,
+          "q_real_rad": 0.04520485236896299,
+          "q_sim_rad": 0.06503630429506302,
+          "gap_rad": -0.01983145192610003,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint6.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.015068284122987663,
+          "q_real_rad": 0.0207904173342488,
+          "q_sim_rad": 0.015077995136380196,
+          "gap_rad": 0.005712422197868605,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint6.json",
+          "repetition": 1,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.03493171587701234,
+          "q_real_rad": -0.02040894178683139,
+          "q_sim_rad": -0.03489994257688522,
+          "gap_rad": 0.014491000790053832,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint6.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.015068284122987663,
+          "q_real_rad": -0.0036240177004653873,
+          "q_sim_rad": 0.015041904523968697,
+          "gap_rad": -0.018665922224434084,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint6.json",
+          "repetition": 1,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.11506828412298767,
+          "q_real_rad": 0.09746700236514805,
+          "q_sim_rad": 0.11500851064920425,
+          "gap_rad": -0.017541508284056206,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint6.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.015068284122987663,
+          "q_real_rad": 0.0207904173342488,
+          "q_sim_rad": 0.015090941451489925,
+          "gap_rad": 0.005699475882758875,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint6.json",
+          "repetition": 2,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.06506828412298767,
+          "q_real_rad": 0.04520485236896299,
+          "q_sim_rad": 0.06503952294588089,
+          "gap_rad": -0.0198346705769179,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint6.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.015068284122987663,
+          "q_real_rad": 0.0207904173342488,
+          "q_sim_rad": 0.015077994205057621,
+          "gap_rad": 0.00571242312919118,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint6.json",
+          "repetition": 2,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.03493171587701234,
+          "q_real_rad": -0.027656977187762166,
+          "q_sim_rad": -0.03490801528096199,
+          "gap_rad": 0.007251038093199824,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint6.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.015068284122987663,
+          "q_real_rad": -0.0036240177004653873,
+          "q_sim_rad": 0.015041904523968697,
+          "gap_rad": -0.018665922224434084,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint6.json",
+          "repetition": 2,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.11506828412298767,
+          "q_real_rad": 0.09784847791256546,
+          "q_sim_rad": 0.11500851064920425,
+          "gap_rad": -0.017160032736638797,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint6.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.015068284122987663,
+          "q_real_rad": 0.018883039597161755,
+          "q_sim_rad": 0.015129374340176582,
+          "gap_rad": 0.0037536652569851725,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint6.json",
+          "repetition": 3,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.06506828412298767,
+          "q_real_rad": 0.04520485236896299,
+          "q_sim_rad": 0.06504767388105392,
+          "gap_rad": -0.019842821512090936,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint6.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.015068284122987663,
+          "q_real_rad": 0.018883039597161755,
+          "q_sim_rad": 0.015080413781106472,
+          "gap_rad": 0.003802625816055283,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint6.json",
+          "repetition": 3,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.03493171587701234,
+          "q_real_rad": -0.027656977187762166,
+          "q_sim_rad": -0.03490801155567169,
+          "gap_rad": 0.007251034367909526,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint6.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.015068284122987663,
+          "q_real_rad": -0.0036240177004653873,
+          "q_sim_rad": 0.015041908249258995,
+          "gap_rad": -0.018665925949724382,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint6.json",
+          "repetition": 3,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.11506828412298767,
+          "q_real_rad": 0.09784847791256546,
+          "q_sim_rad": 0.1150190532207489,
+          "gap_rad": -0.017170575308183444,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint6.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.015068284122987663,
+          "q_real_rad": 0.018883039597161755,
+          "q_sim_rad": 0.015100877732038498,
+          "gap_rad": 0.003782161865123257,
+          "approach_direction": "negative"
+        }
+      ]
+    },
+    {
+      "joint": "openarm_left_joint7",
+      "usable_samples": 18,
+      "distinct_sim_positions": [
+        -0.02639,
+        -0.02637,
+        0.02332,
+        0.02333,
+        0.02336,
+        0.02337,
+        0.02338,
+        0.07313,
+        0.07314,
+        0.12313,
+        0.12316,
+        0.12317
+      ],
+      "fit": {
+        "model": "q_real = a*q_sim + b + h_positive*I(positive) + h_negative*I(negative)",
+        "rank": 4,
+        "a": 0.9178703963636662,
+        "b_rad": -0.0028454777497227504,
+        "h_positive_rad": -0.002770617034005483,
+        "h_negative_rad": 0.01779135895903643,
+        "residual_std_rad": 0.0009512105304952423
+      },
+      "evidence": {
+        "gap_median_rad": 0.0035436373499440066,
+        "gap_std_rad": 0.013281162700853846,
+        "positive_gap_median_rad": -0.011619627112148478,
+        "negative_gap_median_rad": 0.01383691223738559,
+        "hold_gap_median_rad": -0.00884713498775902,
+        "positive_minus_negative_gap_rad": -0.02545653934953407,
+        "positive_samples": 6,
+        "negative_samples": 9,
+        "hold_samples": 3
+      },
+      "classification": [
+        "scale_or_transmission_candidate",
+        "directional_backlash_or_friction_candidate"
+      ],
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      },
+      "Isaac_candidate_remediation": [
+        {
+          "layer": "Isaac_mapping_review",
+          "action": "Audit radians/degrees, joint axis sign, transmission ratio, drive target units, and joint limits. Do not edit USD/URDF until replay validation passes."
+        },
+        {
+          "layer": "stateful_replay_or_control_model",
+          "action": "Keep separate positive/negative approach corrections; model friction/deadband/backlash in the Isaac control wrapper or randomization, not as a single URDF zero offset."
+        },
+        {
+          "layer": "dynamic_delay",
+          "action": "Not identifiable from settled endpoints alone. Fit command-to-response timing from timestamped ramps, then emulate command/observation delay with buffers and matching control rate in Isaac."
+        }
+      ],
+      "rows": [
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint7.json",
+          "repetition": 1,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.07346074616617067,
+          "q_real_rad": 0.06427862973983345,
+          "q_sim_rad": 0.07313933223485947,
+          "gap_rad": -0.008860702495026018,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint7.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.023460746166170665,
+          "q_real_rad": 0.037193865873197396,
+          "q_sim_rad": 0.023362349718809128,
+          "gap_rad": 0.013831516154388268,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint7.json",
+          "repetition": 1,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.026539253833829338,
+          "q_real_rad": -0.010872053101396162,
+          "q_sim_rad": -0.02637450024485588,
+          "gap_rad": 0.015502447143459719,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint7.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.023460746166170665,
+          "q_real_rad": 0.0165941863126573,
+          "q_sim_rad": 0.023327935487031937,
+          "gap_rad": -0.006733749174374637,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint7.json",
+          "repetition": 1,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.12346074616617067,
+          "q_real_rad": 0.10662241550316587,
+          "q_sim_rad": 0.12316060811281204,
+          "gap_rad": -0.016538192609646174,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint7.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.023460746166170665,
+          "q_real_rad": 0.037193865873197396,
+          "q_sim_rad": 0.023368965834379196,
+          "gap_rad": 0.0138249000388182,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint7.json",
+          "repetition": 2,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.07346074616617067,
+          "q_real_rad": 0.06427862973983345,
+          "q_sim_rad": 0.07312570512294769,
+          "gap_rad": -0.008847075383114245,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint7.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.023460746166170665,
+          "q_real_rad": 0.037193865873197396,
+          "q_sim_rad": 0.023356953635811806,
+          "gap_rad": 0.01383691223738559,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint7.json",
+          "repetition": 2,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.026539253833829338,
+          "q_real_rad": -0.010872053101396162,
+          "q_sim_rad": -0.026387343183159828,
+          "gap_rad": 0.015515290081763666,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint7.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.023460746166170665,
+          "q_real_rad": 0.0165941863126573,
+          "q_sim_rad": 0.023324791342020035,
+          "gap_rad": -0.006730605029362735,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint7.json",
+          "repetition": 2,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.12346074616617067,
+          "q_real_rad": 0.10662241550316587,
+          "q_sim_rad": 0.123167984187603,
+          "gap_rad": -0.01654556868443713,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint7.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.023460746166170665,
+          "q_real_rad": 0.037193865873197396,
+          "q_sim_rad": 0.023375986143946648,
+          "gap_rad": 0.013817879729250748,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint7.json",
+          "repetition": 3,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.07346074616617067,
+          "q_real_rad": 0.06427862973983345,
+          "q_sim_rad": 0.07312576472759247,
+          "gap_rad": -0.00884713498775902,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint7.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.023460746166170665,
+          "q_real_rad": 0.037193865873197396,
+          "q_sim_rad": 0.023356953635811806,
+          "gap_rad": 0.01383691223738559,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint7.json",
+          "repetition": 3,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.026539253833829338,
+          "q_real_rad": -0.010872053101396162,
+          "q_sim_rad": -0.02638515830039978,
+          "gap_rad": 0.015513105199003618,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint7.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.023460746166170665,
+          "q_real_rad": 0.0165941863126573,
+          "q_sim_rad": 0.023330124095082283,
+          "gap_rad": -0.006735937782424983,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint7.json",
+          "repetition": 3,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.12346074616617067,
+          "q_real_rad": 0.10662241550316587,
+          "q_sim_rad": 0.12312573194503784,
+          "gap_rad": -0.016503316441871974,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_left_joint7.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.023460746166170665,
+          "q_real_rad": 0.037193865873197396,
+          "q_sim_rad": 0.023373741656541824,
+          "gap_rad": 0.013820124216655572,
+          "approach_direction": "negative"
+        }
+      ]
+    },
+    {
+      "joint": "openarm_right_joint1",
+      "usable_samples": 18,
+      "distinct_sim_positions": [
+        -0.03875,
+        -0.03874,
+        0.01066,
+        0.01068,
+        0.01069,
+        0.0107,
+        0.06009,
+        0.1095,
+        0.10951
+      ],
+      "fit": {
+        "model": "q_real = a*q_sim + b + h_positive*I(positive) + h_negative*I(negative)",
+        "rank": 4,
+        "a": 0.8708673035141944,
+        "b_rad": 0.00279512823678184,
+        "h_positive_rad": -0.0012037179696803798,
+        "h_negative_rad": 0.0003619942850639514,
+        "residual_std_rad": 0.0007630714824567457
+      },
+      "evidence": {
+        "gap_median_rad": 0.0005780084783335582,
+        "gap_std_rad": 0.006684343390429867,
+        "positive_gap_median_rad": -0.006289464641877629,
+        "negative_gap_median_rad": 0.00285910151748503,
+        "hold_gap_median_rad": -0.004964609501156403,
+        "positive_minus_negative_gap_rad": -0.009148566159362659,
+        "positive_samples": 6,
+        "negative_samples": 9,
+        "hold_samples": 3
+      },
+      "classification": [
+        "scale_or_transmission_candidate"
+      ],
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      },
+      "Isaac_candidate_remediation": [
+        {
+          "layer": "Isaac_mapping_review",
+          "action": "Audit radians/degrees, joint axis sign, transmission ratio, drive target units, and joint limits. Do not edit USD/URDF until replay validation passes."
+        },
+        {
+          "layer": "dynamic_delay",
+          "action": "Not identifiable from settled endpoints alone. Fit command-to-response timing from timestamped ramps, then emulate command/observation delay with buffers and matching control rate in Isaac."
+        }
+      ],
+      "rows": [
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint1.json",
+          "repetition": 1,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.060872053101396165,
+          "q_real_rad": 0.05512321660181563,
+          "q_sim_rad": 0.06008782610297203,
+          "gap_rad": -0.004964609501156403,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint1.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.010872053101396162,
+          "q_real_rad": 0.010872053101396162,
+          "q_sim_rad": 0.010681075043976307,
+          "gap_rad": 0.00019097805741985496,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint1.json",
+          "repetition": 1,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.03912794689860384,
+          "q_real_rad": -0.03109025711451885,
+          "q_sim_rad": -0.038741569966077805,
+          "gap_rad": 0.007651312851558956,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint1.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.010872053101396162,
+          "q_real_rad": 0.011253528648813571,
+          "q_sim_rad": 0.010661067441105843,
+          "gap_rad": 0.0005924612077077285,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint1.json",
+          "repetition": 1,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.11087205310139617,
+          "q_real_rad": 0.09670405127031323,
+          "q_sim_rad": 0.1095125824213028,
+          "gap_rad": -0.012808531150989566,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint1.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.010872053101396162,
+          "q_real_rad": 0.011253528648813571,
+          "q_sim_rad": 0.010689972899854183,
+          "gap_rad": 0.0005635557489593879,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint1.json",
+          "repetition": 2,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.060872053101396165,
+          "q_real_rad": 0.05512321660181563,
+          "q_sim_rad": 0.06008632108569145,
+          "gap_rad": -0.004963104483875824,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint1.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.010872053101396162,
+          "q_real_rad": 0.013542381933318026,
+          "q_sim_rad": 0.010677316226065159,
+          "gap_rad": 0.0028650657072528674,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint1.json",
+          "repetition": 2,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.03912794689860384,
+          "q_real_rad": -0.03109025711451885,
+          "q_sim_rad": -0.03874155133962631,
+          "gap_rad": 0.007651294225107463,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint1.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.010872053101396162,
+          "q_real_rad": 0.011253528648813571,
+          "q_sim_rad": 0.010657966136932373,
+          "gap_rad": 0.000595562511881198,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint1.json",
+          "repetition": 2,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.11087205310139617,
+          "q_real_rad": 0.09670405127031323,
+          "q_sim_rad": 0.10950776934623718,
+          "gap_rad": -0.012803718075923953,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint1.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.010872053101396162,
+          "q_real_rad": 0.013542381933318026,
+          "q_sim_rad": 0.010685127228498459,
+          "gap_rad": 0.0028572547048195673,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint1.json",
+          "repetition": 3,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.060872053101396165,
+          "q_real_rad": 0.05512321660181563,
+          "q_sim_rad": 0.06008783355355263,
+          "gap_rad": -0.004964616951737,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint1.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.010872053101396162,
+          "q_real_rad": 0.013542381933318026,
+          "q_sim_rad": 0.010683280415832996,
+          "gap_rad": 0.00285910151748503,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint1.json",
+          "repetition": 3,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.03912794689860384,
+          "q_real_rad": -0.03109025711451885,
+          "q_sim_rad": -0.038750700652599335,
+          "gap_rad": 0.007660443538080486,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint1.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.010872053101396162,
+          "q_real_rad": 0.010872053101396162,
+          "q_sim_rad": 0.010655765421688557,
+          "gap_rad": 0.0002162876797076052,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint1.json",
+          "repetition": 3,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.11087205310139617,
+          "q_real_rad": 0.09670405127031323,
+          "q_sim_rad": 0.10949926823377609,
+          "gap_rad": -0.012795216963462863,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint1.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.010872053101396162,
+          "q_real_rad": 0.013542381933318026,
+          "q_sim_rad": 0.010696865618228912,
+          "gap_rad": 0.002845516315089114,
+          "approach_direction": "negative"
+        }
+      ]
+    },
+    {
+      "joint": "openarm_right_joint2",
+      "usable_samples": 18,
+      "distinct_sim_positions": [
+        -0.05039,
+        -0.05038,
+        -0.05037,
+        -0.00055,
+        -0.00054,
+        -0.00052,
+        -0.00051,
+        -0.00049,
+        0.04932,
+        0.09911,
+        0.09917,
+        0.09918
+      ],
+      "fit": {
+        "model": "q_real = a*q_sim + b + h_positive*I(positive) + h_negative*I(negative)",
+        "rank": 4,
+        "a": 0.8470964449494428,
+        "b_rad": -0.0038242832700169866,
+        "h_positive_rad": 0.0030050228151897516,
+        "h_negative_rad": 0.0024640367588814596,
+        "residual_std_rad": 0.0008877370083120113
+      },
+      "evidence": {
+        "gap_median_rad": -0.00043769757052736225,
+        "gap_std_rad": 0.0076846738394389,
+        "positive_gap_median_rad": -0.008464025440435563,
+        "negative_gap_median_rad": -6.340933045656527e-05,
+        "hold_gap_median_rad": -0.011366883400372174,
+        "positive_minus_negative_gap_rad": -0.008400616109978998,
+        "positive_samples": 6,
+        "negative_samples": 9,
+        "hold_samples": 3
+      },
+      "classification": [
+        "scale_or_transmission_candidate"
+      ],
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      },
+      "Isaac_candidate_remediation": [
+        {
+          "layer": "Isaac_mapping_review",
+          "action": "Audit radians/degrees, joint axis sign, transmission ratio, drive target units, and joint limits. Do not edit USD/URDF until replay validation passes."
+        },
+        {
+          "layer": "dynamic_delay",
+          "action": "Not identifiable from settled endpoints alone. Fit command-to-response timing from timestamped ramps, then emulate command/observation delay with buffers and matching control rate in Isaac."
+        }
+      ],
+      "rows": [
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint2.json",
+          "repetition": 1,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.04942778667887389,
+          "q_real_rad": 0.037956816968032214,
+          "q_sim_rad": 0.04932378977537155,
+          "gap_rad": -0.011366972807339337,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint2.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.0005722133211261138,
+          "q_real_rad": -0.000953688868543523,
+          "q_sim_rad": -0.0005159908323548734,
+          "gap_rad": -0.00043769803618864955,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint2.json",
+          "repetition": 1,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.05057221332112612,
+          "q_real_rad": -0.04520485236896299,
+          "q_sim_rad": -0.05038963630795479,
+          "gap_rad": 0.005184783938991799,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint2.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.0005722133211261138,
+          "q_real_rad": -0.0005722133211261138,
+          "q_sim_rad": -0.0005498346290551126,
+          "gap_rad": -2.2378692071001183e-05,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint2.json",
+          "repetition": 1,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.09942778667887389,
+          "q_real_rad": 0.08258945601586909,
+          "q_sim_rad": 0.09917129576206207,
+          "gap_rad": -0.016581839746192983,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint2.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.0005722133211261138,
+          "q_real_rad": -0.0005722133211261138,
+          "q_sim_rad": -0.0005103722214698792,
+          "gap_rad": -6.184109965623463e-05,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint2.json",
+          "repetition": 2,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.04942778667887389,
+          "q_real_rad": 0.037956816968032214,
+          "q_sim_rad": 0.04932370036840439,
+          "gap_rad": -0.011366883400372174,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint2.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.0005722133211261138,
+          "q_real_rad": -0.003242542153047978,
+          "q_sim_rad": -0.0005098238470964134,
+          "gap_rad": -0.0027327183059515647,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint2.json",
+          "repetition": 2,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.05057221332112612,
+          "q_real_rad": -0.04520485236896299,
+          "q_sim_rad": -0.05037263035774231,
+          "gap_rad": 0.005167777988779321,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint2.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.0005722133211261138,
+          "q_real_rad": -0.0005722133211261138,
+          "q_sim_rad": -0.0005445418646559119,
+          "gap_rad": -2.767145647020186e-05,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint2.json",
+          "repetition": 2,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.09942778667887389,
+          "q_real_rad": 0.08258945601586909,
+          "q_sim_rad": 0.09911056607961655,
+          "gap_rad": -0.016521110063747457,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint2.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.0005722133211261138,
+          "q_real_rad": -0.000953688868543523,
+          "q_sim_rad": -0.0004901675274595618,
+          "gap_rad": -0.00046352134108396115,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint2.json",
+          "repetition": 3,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.04942778667887389,
+          "q_real_rad": 0.037956816968032214,
+          "q_sim_rad": 0.04932066798210144,
+          "gap_rad": -0.011363851014069226,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint2.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.0005722133211261138,
+          "q_real_rad": -0.000953688868543523,
+          "q_sim_rad": -0.000515991763677448,
+          "gap_rad": -0.00043769710486607494,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint2.json",
+          "repetition": 3,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.05057221332112612,
+          "q_real_rad": -0.04520485236896299,
+          "q_sim_rad": -0.050384342670440674,
+          "gap_rad": 0.005179490301477685,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint2.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.0005722133211261138,
+          "q_real_rad": -0.000953688868543523,
+          "q_sim_rad": -0.0005467480514198542,
+          "gap_rad": -0.0004069408171236688,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint2.json",
+          "repetition": 3,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.09942778667887389,
+          "q_real_rad": 0.08258945601586909,
+          "q_sim_rad": 0.09917660057544708,
+          "gap_rad": -0.016587144559577993,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint2.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.0005722133211261138,
+          "q_real_rad": -0.0005722133211261138,
+          "q_sim_rad": -0.0005088039906695485,
+          "gap_rad": -6.340933045656527e-05,
+          "approach_direction": "negative"
+        }
+      ]
+    },
+    {
+      "joint": "openarm_right_joint3",
+      "usable_samples": 18,
+      "distinct_sim_positions": [
+        -0.05475,
+        -0.00479,
+        -0.00478,
+        -0.00475,
+        -0.00474,
+        -0.00473,
+        -0.0047,
+        0.04522,
+        0.04523,
+        0.0952,
+        0.09521
+      ],
+      "fit": {
+        "model": "q_real = a*q_sim + b + h_positive*I(positive) + h_negative*I(negative)",
+        "rank": 4,
+        "a": 0.9909047509102487,
+        "b_rad": -0.0010065035462642434,
+        "h_positive_rad": -0.0001136907987675333,
+        "h_negative_rad": 0.0020609727504749434,
+        "residual_std_rad": 0.0005972397045802241
+      },
+      "evidence": {
+        "gap_median_rad": -0.00017771486424500438,
+        "gap_std_rad": 0.0015642013134599207,
+        "positive_gap_median_rad": -0.0015264967121932926,
+        "negative_gap_median_rad": 0.0007401321772473324,
+        "hold_gap_median_rad": -0.0011673552114377372,
+        "positive_minus_negative_gap_rad": -0.002266628889440625,
+        "positive_samples": 6,
+        "negative_samples": 9,
+        "hold_samples": 3
+      },
+      "classification": [
+        "static_offset_candidate"
+      ],
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      },
+      "Isaac_candidate_remediation": [
+        {
+          "layer": "compare_or_replay",
+          "action": "Use q_sim_corrected = a*q_sim + b only in a versioned replay/compare transform; validate on held-out repetitions."
+        },
+        {
+          "layer": "dynamic_delay",
+          "action": "Not identifiable from settled endpoints alone. Fit command-to-response timing from timestamped ramps, then emulate command/observation delay with buffers and matching control rate in Isaac."
+        }
+      ],
+      "rows": [
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint3.json",
+          "repetition": 1,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.04523155565728239,
+          "q_real_rad": 0.04406042572671076,
+          "q_sim_rad": 0.0452277809381485,
+          "gap_rad": -0.0011673552114377372,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint3.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.004768444342717615,
+          "q_real_rad": -0.003242542153047978,
+          "q_sim_rad": -0.004742358345538378,
+          "gap_rad": 0.0014998161924903997,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint3.json",
+          "repetition": 1,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.05476844434271762,
+          "q_real_rad": -0.05245288776989376,
+          "q_sim_rad": -0.0547465905547142,
+          "gap_rad": 0.0022937027848204394,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint3.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.004768444342717615,
+          "q_real_rad": -0.006294346532387252,
+          "q_sim_rad": -0.0047850776463747025,
+          "gap_rad": -0.0015092688860125492,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint3.json",
+          "repetition": 1,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.09523155565728239,
+          "q_real_rad": 0.09288929579613914,
+          "q_sim_rad": 0.09520851075649261,
+          "gap_rad": -0.0023192149603534773,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint3.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.004768444342717615,
+          "q_real_rad": -0.0020981155107957505,
+          "q_sim_rad": -0.004696024116128683,
+          "gap_rad": 0.0025979086053329326,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint3.json",
+          "repetition": 2,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.04523155565728239,
+          "q_real_rad": 0.04406042572671076,
+          "q_sim_rad": 0.04521922022104263,
+          "gap_rad": -0.0011587944943318718,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint3.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.004768444342717615,
+          "q_real_rad": -0.0040054932478827965,
+          "q_sim_rad": -0.004742358811199665,
+          "gap_rad": 0.0007368655633168686,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint3.json",
+          "repetition": 2,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.05476844434271762,
+          "q_real_rad": -0.05436026550698081,
+          "q_sim_rad": -0.0547465905547142,
+          "gap_rad": 0.0003863250477333935,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint3.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.004768444342717615,
+          "q_real_rad": -0.005531395437552433,
+          "q_sim_rad": -0.004776204004883766,
+          "gap_rad": -0.0007551914326686671,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint3.json",
+          "repetition": 2,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.09523155565728239,
+          "q_real_rad": 0.09365224689097396,
+          "q_sim_rad": 0.09519597142934799,
+          "gap_rad": -0.0015437245383740361,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint3.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.004768444342717615,
+          "q_real_rad": -0.0040054932478827965,
+          "q_sim_rad": -0.004739528056234121,
+          "gap_rad": 0.0007340348083513248,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint3.json",
+          "repetition": 3,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.04523155565728239,
+          "q_real_rad": 0.04329747463187594,
+          "q_sim_rad": 0.04522480443120003,
+          "gap_rad": -0.0019273297993240845,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint3.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.004768444342717615,
+          "q_real_rad": -0.0040054932478827965,
+          "q_sim_rad": -0.004745625425130129,
+          "gap_rad": 0.0007401321772473324,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint3.json",
+          "repetition": 3,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.05476844434271762,
+          "q_real_rad": -0.05321583886472858,
+          "q_sim_rad": -0.0547465905547142,
+          "gap_rad": 0.001530751689985621,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint3.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.004768444342717615,
+          "q_real_rad": -0.005531395437552433,
+          "q_sim_rad": -0.004789640661329031,
+          "gap_rad": -0.0007417547762234022,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint3.json",
+          "repetition": 3,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.09523155565728239,
+          "q_real_rad": 0.09288929579613914,
+          "q_sim_rad": 0.09520850330591202,
+          "gap_rad": -0.0023192075097728804,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint3.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.004768444342717615,
+          "q_real_rad": -0.0040054932478827965,
+          "q_sim_rad": -0.0047282325103878975,
+          "gap_rad": 0.000722739262505101,
+          "approach_direction": "negative"
+        }
+      ]
+    },
+    {
+      "joint": "openarm_right_joint4",
+      "usable_samples": 15,
+      "distinct_sim_positions": [
+        0.00825,
+        0.00826,
+        0.05795,
+        0.05796,
+        0.05798,
+        0.05799,
+        0.10767,
+        0.10768,
+        0.10769
+      ],
+      "fit": {
+        "model": "q_real = a*q_sim + b + h_positive*I(positive) + h_negative*I(negative)",
+        "rank": 4,
+        "a": 0.9153754864229708,
+        "b_rad": -0.0033965629157716374,
+        "h_positive_rad": 0.00534729364319792,
+        "h_negative_rad": 0.00887501372841669,
+        "residual_std_rad": 0.0002492812786440338
+      },
+      "evidence": {
+        "gap_median_rad": 0.0005700731553499594,
+        "gap_std_rad": 0.005870502116431211,
+        "positive_gap_median_rad": -0.00716086579474684,
+        "negative_gap_median_rad": 0.004896022964539171,
+        "hold_gap_median_rad": -0.008552747417846618,
+        "positive_minus_negative_gap_rad": -0.01205688875928601,
+        "positive_samples": 3,
+        "negative_samples": 9,
+        "hold_samples": 3
+      },
+      "classification": [
+        "scale_or_transmission_candidate",
+        "directional_backlash_or_friction_candidate"
+      ],
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      },
+      "Isaac_candidate_remediation": [
+        {
+          "layer": "Isaac_mapping_review",
+          "action": "Audit radians/degrees, joint axis sign, transmission ratio, drive target units, and joint limits. Do not edit USD/URDF until replay validation passes."
+        },
+        {
+          "layer": "stateful_replay_or_control_model",
+          "action": "Keep separate positive/negative approach corrections; model friction/deadband/backlash in the Isaac control wrapper or randomization, not as a single URDF zero offset."
+        },
+        {
+          "layer": "dynamic_delay",
+          "action": "Not identifiable from settled endpoints alone. Fit command-to-response timing from timestamped ramps, then emulate command/observation delay with buffers and matching control rate in Isaac."
+        }
+      ],
+      "rows": [
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint4.json",
+          "repetition": 1,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.05858319981689171,
+          "q_real_rad": 0.05016403448538931,
+          "q_sim_rad": 0.057961851358413696,
+          "gap_rad": -0.007797816873024388,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint4.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.008583199816891707,
+          "q_real_rad": 0.013160906385900617,
+          "q_sim_rad": 0.008253570646047592,
+          "gap_rad": 0.004907335739853025,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint4.json",
+          "repetition": 1,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.10858319981689171,
+          "q_real_rad": 0.10051880674448732,
+          "q_sim_rad": 0.10767967253923416,
+          "gap_rad": -0.00716086579474684,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint4.json",
+          "repetition": 1,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.05858319981689171,
+          "q_real_rad": 0.05855649652857231,
+          "q_sim_rad": 0.057982176542282104,
+          "gap_rad": 0.000574319986290206,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint4.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.008583199816891707,
+          "q_real_rad": 0.013160906385900617,
+          "q_sim_rad": 0.00825060810893774,
+          "gap_rad": 0.004910298276962877,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint4.json",
+          "repetition": 2,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.05858319981689171,
+          "q_real_rad": 0.04940108339055449,
+          "q_sim_rad": 0.05795383080840111,
+          "gap_rad": -0.008552747417846618,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint4.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.008583199816891707,
+          "q_real_rad": 0.013160906385900617,
+          "q_sim_rad": 0.008264883421361446,
+          "gap_rad": 0.004896022964539171,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint4.json",
+          "repetition": 2,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.10858319981689171,
+          "q_real_rad": 0.10051880674448732,
+          "q_sim_rad": 0.10769139975309372,
+          "gap_rad": -0.007172593008606398,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint4.json",
+          "repetition": 2,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.05858319981689171,
+          "q_real_rad": 0.05855649652857231,
+          "q_sim_rad": 0.05798642709851265,
+          "gap_rad": 0.0005700694300596609,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint4.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.008583199816891707,
+          "q_real_rad": 0.013160906385900617,
+          "q_sim_rad": 0.008250607177615166,
+          "gap_rad": 0.004910299208285451,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint4.json",
+          "repetition": 3,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.05858319981689171,
+          "q_real_rad": 0.04940108339055449,
+          "q_sim_rad": 0.05795383080840111,
+          "gap_rad": -0.008552747417846618,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint4.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.008583199816891707,
+          "q_real_rad": 0.013160906385900617,
+          "q_sim_rad": 0.008246352896094322,
+          "gap_rad": 0.004914553489806295,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint4.json",
+          "repetition": 3,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.10858319981689171,
+          "q_real_rad": 0.10051880674448732,
+          "q_sim_rad": 0.1076703816652298,
+          "gap_rad": -0.007151574920742476,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint4.json",
+          "repetition": 3,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.05858319981689171,
+          "q_real_rad": 0.05855649652857231,
+          "q_sim_rad": 0.05798642337322235,
+          "gap_rad": 0.0005700731553499594,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint4.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": 0.008583199816891707,
+          "q_real_rad": 0.012397955291065799,
+          "q_sim_rad": 0.008256553672254086,
+          "gap_rad": 0.004141401618811713,
+          "approach_direction": "negative"
+        }
+      ]
+    },
+    {
+      "joint": "openarm_right_joint5",
+      "usable_samples": 18,
+      "distinct_sim_positions": [
+        -0.06634,
+        -0.06633,
+        -0.01637,
+        -0.01636,
+        -0.01632,
+        -0.01631,
+        0.03363,
+        0.03364,
+        0.03365,
+        0.08362,
+        0.08363
+      ],
+      "fit": {
+        "model": "q_real = a*q_sim + b + h_positive*I(positive) + h_negative*I(negative)",
+        "rank": 4,
+        "a": 0.9807382487647416,
+        "b_rad": -0.01220060383990361,
+        "h_positive_rad": -0.003233068537613761,
+        "h_negative_rad": 0.02584234524660709,
+        "residual_std_rad": 0.00013086658669238396
+      },
+      "evidence": {
+        "gap_median_rad": 0.0004964331186272375,
+        "gap_std_rad": 0.01512071331158886,
+        "positive_gap_median_rad": -0.01607849495076863,
+        "negative_gap_median_rad": 0.0142197028030413,
+        "hold_gap_median_rad": -0.012846886524746637,
+        "positive_minus_negative_gap_rad": -0.03029819775380993,
+        "positive_samples": 6,
+        "negative_samples": 9,
+        "hold_samples": 3
+      },
+      "classification": [
+        "directional_backlash_or_friction_candidate"
+      ],
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      },
+      "Isaac_candidate_remediation": [
+        {
+          "layer": "stateful_replay_or_control_model",
+          "action": "Keep separate positive/negative approach corrections; model friction/deadband/backlash in the Isaac control wrapper or randomization, not as a single URDF zero offset."
+        },
+        {
+          "layer": "dynamic_delay",
+          "action": "Not identifiable from settled endpoints alone. Fit command-to-response timing from timestamped ramps, then emulate command/observation delay with buffers and matching control rate in Isaac."
+        }
+      ],
+      "rows": [
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint5.json",
+          "repetition": 1,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.0334058136873427,
+          "q_real_rad": 0.0207904173342488,
+          "q_sim_rad": 0.03365039452910423,
+          "gap_rad": -0.012859977194855432,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint5.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.0165941863126573,
+          "q_real_rad": -0.0020981155107957505,
+          "q_sim_rad": -0.01631781831383705,
+          "gap_rad": 0.0142197028030413,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint5.json",
+          "repetition": 1,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.0665941863126573,
+          "q_real_rad": -0.051308461127641536,
+          "q_sim_rad": -0.06632660329341888,
+          "gap_rad": 0.015018142165777348,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint5.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.0165941863126573,
+          "q_real_rad": -0.03147173266193626,
+          "q_sim_rad": -0.01636333018541336,
+          "gap_rad": -0.015108402476522897,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint5.json",
+          "repetition": 1,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.0834058136873427,
+          "q_real_rad": 0.0665674830243379,
+          "q_sim_rad": 0.08362655341625214,
+          "gap_rad": -0.017059070391914233,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint5.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.0165941863126573,
+          "q_real_rad": -0.0024795910582131597,
+          "q_sim_rad": -0.01632288657128811,
+          "gap_rad": 0.013843295513074949,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint5.json",
+          "repetition": 2,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.0334058136873427,
+          "q_real_rad": 0.0207904173342488,
+          "q_sim_rad": 0.03362920135259628,
+          "gap_rad": -0.012838784018347482,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint5.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.0165941863126573,
+          "q_real_rad": -0.0020981155107957505,
+          "q_sim_rad": -0.016322527080774307,
+          "gap_rad": 0.014224411569978557,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint5.json",
+          "repetition": 2,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.0665941863126573,
+          "q_real_rad": -0.051308461127641536,
+          "q_sim_rad": -0.0663333386182785,
+          "gap_rad": 0.015024877490636968,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint5.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.0165941863126573,
+          "q_real_rad": -0.03147173266193626,
+          "q_sim_rad": -0.01636333018541336,
+          "gap_rad": -0.015108402476522897,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint5.json",
+          "repetition": 2,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.0834058136873427,
+          "q_real_rad": 0.0665674830243379,
+          "q_sim_rad": 0.08362656831741333,
+          "gap_rad": -0.017059085293075427,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint5.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.0165941863126573,
+          "q_real_rad": -0.0024795910582131597,
+          "q_sim_rad": -0.016311241313815117,
+          "gap_rad": 0.013831650255601957,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint5.json",
+          "repetition": 3,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.0334058136873427,
+          "q_real_rad": 0.0207904173342488,
+          "q_sim_rad": 0.03363730385899544,
+          "gap_rad": -0.012846886524746637,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint5.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.0165941863126573,
+          "q_real_rad": -0.0024795910582131597,
+          "q_sim_rad": -0.016322525218129158,
+          "gap_rad": 0.013842934159915998,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint5.json",
+          "repetition": 3,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.0665941863126573,
+          "q_real_rad": -0.051689936675058945,
+          "q_sim_rad": -0.06633815169334412,
+          "gap_rad": 0.014648215018285171,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint5.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.0165941863126573,
+          "q_real_rad": -0.03147173266193626,
+          "q_sim_rad": -0.016366690397262573,
+          "gap_rad": -0.015105042264673685,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint5.json",
+          "repetition": 3,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.0834058136873427,
+          "q_real_rad": 0.0665674830243379,
+          "q_sim_rad": 0.08361607044935226,
+          "gap_rad": -0.01704858742501436,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint5.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.0165941863126573,
+          "q_real_rad": -0.0024795910582131597,
+          "q_sim_rad": -0.01632116176187992,
+          "gap_rad": 0.013841570703666761,
+          "approach_direction": "negative"
+        }
+      ]
+    }
+  ],
+  "rejected_inputs": [
+    {
+      "path": "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/openarm_right_joint6.json",
+      "reason": "trial_not_valid"
+    }
+  ]
+}

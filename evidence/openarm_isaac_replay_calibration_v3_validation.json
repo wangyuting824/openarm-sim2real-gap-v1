@@ -1,0 +1,25 @@
+{
+  "kind": "openarm_isaac_replay_calibration_validation",
+  "config": "alignment/calibrations/openarm_isaac_replay_calibration_v3.json",
+  "passed": true,
+  "joint_count": 14,
+  "enabled_joint_count": 14,
+  "provisional_joint_count": 0,
+  "enabled_probe_targets_rad": {
+    "openarm_left_joint1": 0.017145192514293753,
+    "openarm_left_joint2": 0.01698070548660124,
+    "openarm_left_joint3": 0.006185537403169926,
+    "openarm_left_joint4": 0.01649965619052764,
+    "openarm_left_joint5": 0.004767177803002457,
+    "openarm_left_joint6": 0.000807714835190574,
+    "openarm_left_joint7": 0.015511930177550573,
+    "openarm_right_joint1": 0.020212474307065728,
+    "openarm_right_joint2": 0.013117645628971872,
+    "openarm_right_joint3": 0.01881159147194073,
+    "openarm_right_joint4": 0.01491094681268778,
+    "openarm_right_joint5": 0.0074141611353912215,
+    "openarm_right_joint6": 0.008183518227443358,
+    "openarm_right_joint7": -0.001979685361119553
+  },
+  "provisional_passthrough_targets_rad": {}
+}

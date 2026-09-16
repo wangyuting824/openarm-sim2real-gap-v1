@@ -29,12 +29,22 @@ not prove that the PhysX articulation drive applied the action.
      callback before changing gain;
    - state itself is stale/misaligned: repair publisher lifecycle or named
      mapping before diagnosing dynamics.
-6. For the identified OpenArm right J7 zero-gain fault, call
-   `/openarm/isaac_gap/repair_right_j7_drive`. It snapshots the original drive,
-   uses current pose as target, applies only Isaac stiffness=100/damping=10,
-   preserves max force, and reloads the bridge. Run the sim-only test again.
-   `/openarm/isaac_gap/restore_right_j7_drive` rolls the candidate back.
-   Mark real measurement blocked until target and return tracking both pass.
+6. For a single identified OpenArm fault, call
+   `/openarm/isaac_gap/repair_right_j7_drive`. For an all-arm regression or
+   any drive with zero/invalid gains, call
+   `/openarm/isaac_gap/repair_all_arm_drives`. Both operate only on the live
+   Isaac session: they snapshot original attributes, initialize targets from
+   current articulation pose, apply stiffness=100/damping=10, preserve max
+   force, and reload the bridge. The matching restore services roll candidates
+   back.
+7. Autonomously run `run_sim_only_fixed_point_baseline.sh` after a repair.
+   Accept an arm joint only when its target *and return* errors are within the
+   declared tolerance. A target-only success with a failed return is a
+   damping/settling/competing-writer candidate, not a successful repair.
+8. If any joint still fails, retain the diagnostic JSON and sim-only evidence,
+   stop the simulator router, and do not start a real paired trial for that
+   joint. Inspect limits, drive gains, target writers, physics stepping, and
+   return-hold duration before another simulator-only repair attempt.
 
 This loop may be run autonomously because it is simulator-only. Any later
 real paired motion remains operator-gated.

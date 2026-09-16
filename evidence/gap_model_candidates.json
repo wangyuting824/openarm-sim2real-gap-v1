@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "kind": "openarm_sim2real_gap_model_candidates",
+  "safety": "offline candidates only; no USD, URDF, Isaac drive, or real-command mutation was performed",
+  "joints": [
+    {
+      "joint": "openarm_right_joint7",
+      "usable_samples": 18,
+      "distinct_sim_positions": [
+        -0.07926,
+        -0.02948,
+        0.02026,
+        0.0701
+      ],
+      "fit": {
+        "model": "q_real = a*q_sim + b + h_positive*I(positive) + h_negative*I(negative)",
+        "rank": 4,
+        "a": 0.998663436010977,
+        "b_rad": -0.021952954081339092,
+        "h_positive_rad": 0.00122744490565985,
+        "h_negative_rad": 0.02411624785595038,
+        "residual_std_rad": 0.0012134550586753478
+      },
+      "evidence": {
+        "gap_median_rad": -0.009244837562771835,
+        "gap_std_rad": 0.012100779133442216,
+        "positive_gap_median_rad": -0.020689086290165193,
+        "negative_gap_median_rad": 0.0014435822311700264,
+        "hold_gap_median_rad": -0.021980038029541404,
+        "positive_minus_negative_gap_rad": -0.02213266852133522,
+        "positive_samples": 6,
+        "negative_samples": 9,
+        "hold_samples": 3
+      },
+      "classification": [
+        "directional_backlash_or_friction_candidate"
+      ],
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      },
+      "Isaac_candidate_remediation": [
+        {
+          "layer": "stateful_replay_or_control_model",
+          "action": "Keep separate positive/negative approach corrections; model friction/deadband/backlash in the Isaac control wrapper or randomization, not as a single URDF zero offset."
+        },
+        {
+          "layer": "dynamic_delay",
+          "action": "Not identifiable from settled endpoints alone. Fit command-to-response timing from timestamped ramps, then emulate command/observation delay with buffers and matching control rate in Isaac."
+        }
+      ],
+      "rows": [
+        {
+          "source": "alignment/results/openarm_real_sim_right_j7_offset_independent_replay_v5/openarm_right_joint7.json",
+          "repetition": 1,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.02043564507515079,
+          "q_real_rad": -0.0017166399633783413,
+          "q_sim_rad": 0.02026340551674366,
+          "gap_rad": -0.021980045480122,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_right_j7_offset_independent_replay_v5/openarm_right_joint7.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.029564354924849212,
+          "q_real_rad": -0.028419928282596985,
+          "q_sim_rad": -0.029482048004865646,
+          "gap_rad": 0.0010621197222686618,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_right_j7_offset_independent_replay_v5/openarm_right_joint7.json",
+          "repetition": 1,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.07956435492484921,
+          "q_real_rad": -0.0749599450675209,
+          "q_sim_rad": -0.07925602048635483,
+          "gap_rad": 0.004296075418833922,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_right_j7_offset_independent_replay_v5/openarm_right_joint7.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.029564354924849212,
+          "q_real_rad": -0.05092698558022413,
+          "q_sim_rad": -0.02948209084570408,
+          "gap_rad": -0.021444894734520048,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_right_j7_offset_independent_replay_v5/openarm_right_joint7.json",
+          "repetition": 1,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.0704356450751508,
+          "q_real_rad": 0.05054551003280672,
+          "q_sim_rad": 0.07009730488061905,
+          "gap_rad": -0.01955179484781233,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_right_j7_offset_independent_replay_v5/openarm_right_joint7.json",
+          "repetition": 1,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.029564354924849212,
+          "q_real_rad": -0.028419928282596985,
+          "q_sim_rad": -0.02948206104338169,
+          "gap_rad": 0.0010621327607847064,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_right_j7_offset_independent_replay_v5/openarm_right_joint7.json",
+          "repetition": 2,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.02043564507515079,
+          "q_real_rad": -0.0017166399633783413,
+          "q_sim_rad": 0.020263388752937317,
+          "gap_rad": -0.021980028716315658,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_right_j7_offset_independent_replay_v5/openarm_right_joint7.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.029564354924849212,
+          "q_real_rad": -0.028419928282596985,
+          "q_sim_rad": -0.02948206663131714,
+          "gap_rad": 0.0010621383487201541,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_right_j7_offset_independent_replay_v5/openarm_right_joint7.json",
+          "repetition": 2,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.07956435492484921,
+          "q_real_rad": -0.0749599450675209,
+          "q_sim_rad": -0.07925596833229065,
+          "gap_rad": 0.004296023264769744,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_right_j7_offset_independent_replay_v5/openarm_right_joint7.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.029564354924849212,
+          "q_real_rad": -0.051308461127641536,
+          "q_sim_rad": -0.029482124373316765,
+          "gap_rad": -0.02182633675432477,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_right_j7_offset_independent_replay_v5/openarm_right_joint7.json",
+          "repetition": 2,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.0704356450751508,
+          "q_real_rad": 0.05016403448538931,
+          "q_sim_rad": 0.07009729743003845,
+          "gap_rad": -0.019933262944649144,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_right_j7_offset_independent_replay_v5/openarm_right_joint7.json",
+          "repetition": 2,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.029564354924849212,
+          "q_real_rad": -0.028419928282596985,
+          "q_sim_rad": -0.02948206476867199,
+          "gap_rad": 0.0010621364860750049,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_right_j7_offset_independent_replay_v5/openarm_right_joint7.json",
+          "repetition": 3,
+          "relative_target_rad": 0.05,
+          "target_rad": 0.02043564507515079,
+          "q_real_rad": -0.0017166399633783413,
+          "q_sim_rad": 0.020263398066163063,
+          "gap_rad": -0.021980038029541404,
+          "approach_direction": "hold"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_right_j7_offset_independent_replay_v5/openarm_right_joint7.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.029564354924849212,
+          "q_real_rad": -0.028038452735179575,
+          "q_sim_rad": -0.02948208525776863,
+          "gap_rad": 0.0014436325225890556,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_right_j7_offset_independent_replay_v5/openarm_right_joint7.json",
+          "repetition": 3,
+          "relative_target_rad": -0.05,
+          "target_rad": -0.07956435492484921,
+          "q_real_rad": -0.0749599450675209,
+          "q_sim_rad": -0.07925596833229065,
+          "gap_rad": 0.004296023264769744,
+          "approach_direction": "negative"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_right_j7_offset_independent_replay_v5/openarm_right_joint7.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.029564354924849212,
+          "q_real_rad": -0.051308461127641536,
+          "q_sim_rad": -0.029482118785381317,
+          "gap_rad": -0.02182634234226022,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_right_j7_offset_independent_replay_v5/openarm_right_joint7.json",
+          "repetition": 3,
+          "relative_target_rad": 0.1,
+          "target_rad": 0.0704356450751508,
+          "q_real_rad": 0.05016403448538931,
+          "q_sim_rad": 0.07009731233119965,
+          "gap_rad": -0.019933277845810338,
+          "approach_direction": "positive"
+        },
+        {
+          "source": "alignment/results/openarm_real_sim_right_j7_offset_independent_replay_v5/openarm_right_joint7.json",
+          "repetition": 3,
+          "relative_target_rad": 0.0,
+          "target_rad": -0.029564354924849212,
+          "q_real_rad": -0.028038452735179575,
+          "q_sim_rad": -0.029482034966349602,
+          "gap_rad": 0.0014435822311700264,
+          "approach_direction": "negative"
+        }
+      ]
+    }
+  ],
+  "rejected_inputs": []
+}

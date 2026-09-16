@@ -1,46 +1,43 @@
-# OpenArm Sim2Real Gap v1
+# OpenArm Sim2Real Gap v3
 
-This is the first reproducible release of the OpenArm + Isaac Sim Sim2Real
-integration skill. It provides a guarded ROS 2 control route, Isaac-side
-module recovery and drive repair, fixed-point baseline measurement, and
-evidence from a completed real-plus-simulation 14-axis trial.
+v3 delivers a reproducible **14-axis Isaac compare/replay calibration** for the
+OpenArm + Isaac Sim stack. It contains the guarded ROS command route, the
+Isaac replay bridge, evidence-backed multi-point gap fitting, a complete
+importable calibration package, and a reusable Codex skill.
 
-## Contents
+## What is validated
 
-- `skill/`: Codex Skill instructions and operating references.
-- `alignment/`: ROS routers, measurement runners, Isaac Script Editor daemon,
-  joint mapping, mechanical limits, and physical-trial manifests.
-- `evidence/full14_v2_summary.json`: compact, shareable summary of the first
-  accepted 14-axis real-plus-Isaac fixed-point baseline.
-- `docs/`: integration ledger and Isaac measurement ledger.
+- All 14 arm joints have a named position-response replay term.
+- The independent right-J7 v5 trial completed 18/18 waypoints with 49/49
+  accepted real+simulation receipts; its within-session held-out replay MAE
+  improved from `0.011820` to `0.000918 rad`.
+- The v3 calibration schema and 14 enabled entries pass offline validation.
+- The artifact modifies **Isaac compare/replay only**. It does not change real
+  commands, USD, URDF, Isaac drive parameters, or hardware calibration.
 
-## Validated v1 baseline
+## Import package
 
-The `openarm_real_sim_bimanual_fixed_0p1_full14_v2` trial ran each left and
-right arm joint sequentially at an absolute `0.1 rad` target, with a 50 Hz
-three-second hold and return to its measured start. It recorded 28/28 accepted
-target/return receipts. The Isaac position-drive repair allowed every arm axis
-to track the simulator target within `0.01 rad`.
+Use [`calibration_package/openarm_isaac_replay_calibration_v3/`](calibration_package/openarm_isaac_replay_calibration_v3/):
 
-The real robot's mean absolute target error was `0.013615 rad`; Isaac's was
-`0.000407 rad`. These values are a first control-coordinate baseline, not an
-automatically applicable learned residual or a mechanical output-angle
-calibration.
+- `openarm_isaac_replay_calibration_v3.json`: importable 14-axis artifact.
+- `IMPORT_README_zh.md`: Chinese deployment and Isaac-only validation guide.
+- `SHA256SUMS`: file integrity list.
+- `source_evidence/`: compact fit and validation provenance.
+
+The packaged archive is
+`calibration_package/openarm_isaac_replay_calibration_v3.tar.gz`.
+
+## Scope
+
+This release calibrates settled joint position response. It does not complete
+geometry, camera, contact, payload, dynamic-delay, reliability, or safety
+modeling. See [full-stack gap coverage](docs/sim2real_gap_coverage_zh.md) and
+[skill logic review](docs/skill_logic_review_zh.md) before expanding to task
+optimization.
 
 ## Safety
 
-The default router is simulator-only. Physical routing requires a named trial
-authorization, fresh real state, one command publisher, mechanical limit
-checks, a per-joint excursion bound, an explicit return, and router cleanup.
-Do not use the physical runners without a current operator authorization and a
-clear workspace.
-
-## Quick start
-
-1. Run `alignment/real_sim_gap_agent.py` to verify both state streams.
-2. In Isaac Sim, run `alignment/isaacsim_gap_control_daemon.py` once.
-3. Repair simulator drives through
-   `/openarm/isaac_gap/repair_all_arm_drives`, then run
-   `alignment/run_sim_only_fixed_point_baseline.sh`.
-4. Create a fresh, explicitly authorized physical manifest before running
-   `alignment/run_real_sim_fixed_point_baseline.sh`.
+The default router is simulator-only. Any command that can reach hardware
+requires a fresh named authorization, bounded manifest, real-state freshness,
+single command source, physical workspace confirmation, explicit return, and
+post-run router cleanup.

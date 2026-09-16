@@ -25,6 +25,9 @@ REPAIR_J7_SCRIPT = ALIGNMENT_DIR / "isaacsim_enable_right_j7_position_drive.py"
 RESTORE_J7_SCRIPT = ALIGNMENT_DIR / "isaacsim_restore_right_j7_drive.py"
 REPAIR_ALL_ARMS_SCRIPT = ALIGNMENT_DIR / "isaacsim_enable_all_arm_position_drives.py"
 RESTORE_ALL_ARMS_SCRIPT = ALIGNMENT_DIR / "isaacsim_restore_all_arm_drives.py"
+EXPORT_STAGE_SCRIPT = ALIGNMENT_DIR / "isaacsim_export_current_stage.py"
+ENABLE_COMPENSATION_SCRIPT = ALIGNMENT_DIR / "isaacsim_enable_compensation_replay.py"
+DISABLE_COMPENSATION_SCRIPT = ALIGNMENT_DIR / "isaacsim_disable_compensation_replay.py"
 
 
 def _stop_old_daemon():
@@ -107,6 +110,32 @@ def restore_all_arm_drives(_request, response):
     return _queue(RESTORE_ALL_ARMS_SCRIPT, "restore_all_arm_drives", response)
 
 
+def export_current_stage(_request, response):
+    return _queue(EXPORT_STAGE_SCRIPT, "export_current_stage", response)
+
+
+def enable_compensation_replay(_request, response):
+    daemon["pending"].extend([
+        (ENABLE_COMPENSATION_SCRIPT, "enable_compensation_replay"),
+        (BRIDGE_SCRIPT, "timestamped_command_bridge"),
+    ])
+    _event("queued=enable_compensation_replay")
+    response.success = True
+    response.message = "queued enable_compensation_replay and timestamped_command_bridge"
+    return response
+
+
+def disable_compensation_replay(_request, response):
+    daemon["pending"].extend([
+        (DISABLE_COMPENSATION_SCRIPT, "disable_compensation_replay"),
+        (BRIDGE_SCRIPT, "timestamped_command_bridge"),
+    ])
+    _event("queued=disable_compensation_replay")
+    response.success = True
+    response.message = "queued disable_compensation_replay and timestamped_command_bridge"
+    return response
+
+
 def ensure_all(_request, response):
     daemon["pending"].extend([
         (STATE_SCRIPT, "state_publisher"),
@@ -120,10 +149,11 @@ def ensure_all(_request, response):
 def status(_request, response):
     state = getattr(builtins, "_openarm_state_publisher", None)
     bridge = getattr(builtins, "_openarm_timestamped_bridge", None)
+    compensation = bool(getattr(builtins, "_openarm_isaac_compensation_replay", False))
     response.success = state is not None and bridge is not None and not daemon["errors"]
     response.message = (
-        "state=%s bridge=%s pending=%d errors=%s last_event=%s"
-        % (state is not None, bridge is not None, len(daemon["pending"]), daemon["errors"][-1:] or "none", daemon["last_event"])
+        "state=%s bridge=%s compensation_replay=%s pending=%d errors=%s last_event=%s"
+        % (state is not None, bridge is not None, compensation, len(daemon["pending"]), daemon["errors"][-1:] or "none", daemon["last_event"])
     )
     return response
 
@@ -137,6 +167,9 @@ node.create_service(Trigger, "/openarm/isaac_gap/repair_right_j7_drive", repair_
 node.create_service(Trigger, "/openarm/isaac_gap/restore_right_j7_drive", restore_right_j7_drive)
 node.create_service(Trigger, "/openarm/isaac_gap/repair_all_arm_drives", repair_all_arm_drives)
 node.create_service(Trigger, "/openarm/isaac_gap/restore_all_arm_drives", restore_all_arm_drives)
+node.create_service(Trigger, "/openarm/isaac_gap/export_current_stage", export_current_stage)
+node.create_service(Trigger, "/openarm/isaac_gap/enable_compensation_replay", enable_compensation_replay)
+node.create_service(Trigger, "/openarm/isaac_gap/disable_compensation_replay", disable_compensation_replay)
 
 
 def on_update(_kit_event):
@@ -173,4 +206,4 @@ daemon["pending"].extend([
     (BRIDGE_SCRIPT, "timestamped_command_bridge"),
 ])
 _event("armed domain=%s rmw=%s" % (os.environ.get("ROS_DOMAIN_ID", "0"), os.environ.get("RMW_IMPLEMENTATION", "default")))
-print("OPENARM_GAP_DAEMON_ARMED services=/openarm/isaac_gap/{ensure_state,ensure_bridge,ensure_all,diagnose,repair_right_j7_drive,restore_right_j7_drive,repair_all_arm_drives,restore_all_arm_drives,status} topics=/openarm/isaac_gap/{events,diagnostic_json} domain=%s rmw=%s state_script=%s bridge_script=%s" % (os.environ.get("ROS_DOMAIN_ID", "0"), os.environ.get("RMW_IMPLEMENTATION", "default"), STATE_SCRIPT, BRIDGE_SCRIPT))
+print("OPENARM_GAP_DAEMON_ARMED services=/openarm/isaac_gap/{ensure_state,ensure_bridge,ensure_all,diagnose,repair_right_j7_drive,restore_right_j7_drive,repair_all_arm_drives,restore_all_arm_drives,export_current_stage,enable_compensation_replay,disable_compensation_replay,status} topics=/openarm/isaac_gap/{events,diagnostic_json} domain=%s rmw=%s state_script=%s bridge_script=%s" % (os.environ.get("ROS_DOMAIN_ID", "0"), os.environ.get("RMW_IMPLEMENTATION", "default"), STATE_SCRIPT, BRIDGE_SCRIPT))

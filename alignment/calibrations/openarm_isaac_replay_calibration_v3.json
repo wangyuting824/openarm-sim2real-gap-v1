@@ -1,0 +1,330 @@
+{
+  "schema_version": 2,
+  "kind": "openarm_isaac_replay_calibration",
+  "created_at_utc": "2026-09-16T05:44:08.270393+00:00",
+  "source_candidate_files": [
+    "alignment/results/openarm_real_sim_bimanual_offset_identification_v3/gap_model_candidates.json",
+    "alignment/results/openarm_real_sim_right_j6_j7_offset_identification_retry_v4/gap_model_candidates.json",
+    "alignment/results/openarm_real_sim_right_j7_offset_independent_replay_v5/gap_model_candidates.json"
+  ],
+  "replacements": [
+    {
+      "joint": "openarm_right_joint7",
+      "replaced_by": "alignment/results/openarm_real_sim_right_j7_offset_independent_replay_v5/gap_model_candidates.json"
+    }
+  ],
+  "scope": "Isaac compare/replay only; never a real-command transform",
+  "default_enabled": false,
+  "joint_count": 14,
+  "enabled_joint_count": 14,
+  "provisional_joint_count": 0,
+  "joints": {
+    "openarm_left_joint1": {
+      "status": "isaac_replay_candidate",
+      "enabled_for_isaac_replay": true,
+      "application_mode": "mapping_audit_then_stateful_replay",
+      "classification": [
+        "scale_or_transmission_candidate",
+        "directional_backlash_or_friction_candidate"
+      ],
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.8318519012267828,
+        "b_rad": 0.0005081544897580974,
+        "h_positive_rad": -0.0010143633046038444,
+        "h_negative_rad": 0.00016681456998685507,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.0025169452935111638
+      },
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      }
+    },
+    "openarm_left_joint2": {
+      "status": "isaac_replay_candidate",
+      "enabled_for_isaac_replay": true,
+      "application_mode": "mapping_audit_then_stateful_replay",
+      "classification": [
+        "scale_or_transmission_candidate"
+      ],
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.8591103963260629,
+        "b_rad": -0.0002015024399200153,
+        "h_positive_rad": -0.0020899026595767303,
+        "h_negative_rad": -0.0017444479519866567,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.0016098009926674734
+      },
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      }
+    },
+    "openarm_left_joint3": {
+      "status": "isaac_replay_candidate",
+      "enabled_for_isaac_replay": true,
+      "application_mode": "mapping_audit_then_stateful_replay",
+      "classification": [
+        "scale_or_transmission_candidate",
+        "directional_backlash_or_friction_candidate"
+      ],
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.9623719018542339,
+        "b_rad": -0.013061900633914752,
+        "h_positive_rad": 0.00250152897263964,
+        "h_negative_rad": 0.01937809141344294,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.003311881914486014
+      },
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      }
+    },
+    "openarm_left_joint4": {
+      "status": "isaac_replay_candidate",
+      "enabled_for_isaac_replay": true,
+      "application_mode": "mapping_audit_then_stateful_replay",
+      "classification": [
+        "static_offset_candidate",
+        "scale_or_transmission_candidate"
+      ],
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.9255370307593102,
+        "b_rad": -0.0020110844246585603,
+        "h_positive_rad": 0.005094915413158763,
+        "h_negative_rad": 0.004044323801166567,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.0003331701623712106
+      },
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      }
+    },
+    "openarm_left_joint5": {
+      "status": "isaac_replay_candidate",
+      "enabled_for_isaac_replay": true,
+      "application_mode": "stateful_directional_replay",
+      "classification": [
+        "directional_backlash_or_friction_candidate"
+      ],
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.9854419143472439,
+        "b_rad": -0.014941660483942423,
+        "h_positive_rad": 0.0014103068157307504,
+        "h_negative_rad": 0.02654706501413453,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.002749008448429156
+      },
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      }
+    },
+    "openarm_left_joint6": {
+      "status": "isaac_replay_candidate",
+      "enabled_for_isaac_replay": true,
+      "application_mode": "stateful_directional_replay",
+      "classification": [
+        "directional_backlash_or_friction_candidate"
+      ],
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.9857013139488136,
+        "b_rad": -0.018906311443785698,
+        "h_positive_rad": 0.001857797150932249,
+        "h_negative_rad": 0.025267800474002424,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.002272514225203441
+      },
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      }
+    },
+    "openarm_left_joint7": {
+      "status": "isaac_replay_candidate",
+      "enabled_for_isaac_replay": true,
+      "application_mode": "mapping_audit_then_stateful_replay",
+      "classification": [
+        "scale_or_transmission_candidate",
+        "directional_backlash_or_friction_candidate"
+      ],
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.9178703963636662,
+        "b_rad": -0.0028454777497227504,
+        "h_positive_rad": -0.002770617034005483,
+        "h_negative_rad": 0.01779135895903643,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.0009512105304952423
+      },
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      }
+    },
+    "openarm_right_joint1": {
+      "status": "isaac_replay_candidate",
+      "enabled_for_isaac_replay": true,
+      "application_mode": "mapping_audit_then_stateful_replay",
+      "classification": [
+        "scale_or_transmission_candidate"
+      ],
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.8708673035141944,
+        "b_rad": 0.00279512823678184,
+        "h_positive_rad": -0.0012037179696803798,
+        "h_negative_rad": 0.0003619942850639514,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.0007630714824567457
+      },
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      }
+    },
+    "openarm_right_joint2": {
+      "status": "isaac_replay_candidate",
+      "enabled_for_isaac_replay": true,
+      "application_mode": "mapping_audit_then_stateful_replay",
+      "classification": [
+        "scale_or_transmission_candidate"
+      ],
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.8470964449494428,
+        "b_rad": -0.0038242832700169866,
+        "h_positive_rad": 0.0030050228151897516,
+        "h_negative_rad": 0.0024640367588814596,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.0008877370083120113
+      },
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      }
+    },
+    "openarm_right_joint3": {
+      "status": "isaac_replay_candidate",
+      "enabled_for_isaac_replay": true,
+      "application_mode": "static_compare_replay",
+      "classification": [
+        "static_offset_candidate"
+      ],
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.9909047509102487,
+        "b_rad": -0.0010065035462642434,
+        "h_positive_rad": -0.0001136907987675333,
+        "h_negative_rad": 0.0020609727504749434,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.0005972397045802241
+      },
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      }
+    },
+    "openarm_right_joint4": {
+      "status": "isaac_replay_candidate",
+      "enabled_for_isaac_replay": true,
+      "application_mode": "mapping_audit_then_stateful_replay",
+      "classification": [
+        "scale_or_transmission_candidate",
+        "directional_backlash_or_friction_candidate"
+      ],
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.9153754864229708,
+        "b_rad": -0.0033965629157716374,
+        "h_positive_rad": 0.00534729364319792,
+        "h_negative_rad": 0.00887501372841669,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.0002492812786440338
+      },
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      }
+    },
+    "openarm_right_joint5": {
+      "status": "isaac_replay_candidate",
+      "enabled_for_isaac_replay": true,
+      "application_mode": "stateful_directional_replay",
+      "classification": [
+        "directional_backlash_or_friction_candidate"
+      ],
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.9807382487647416,
+        "b_rad": -0.01220060383990361,
+        "h_positive_rad": -0.003233068537613761,
+        "h_negative_rad": 0.02584234524660709,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.00013086658669238396
+      },
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      }
+    },
+    "openarm_right_joint6": {
+      "status": "isaac_replay_candidate",
+      "enabled_for_isaac_replay": true,
+      "application_mode": "mapping_audit_then_stateful_replay",
+      "classification": [
+        "scale_or_transmission_candidate",
+        "directional_backlash_or_friction_candidate"
+      ],
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.9322212862769605,
+        "b_rad": -0.010460907498095853,
+        "h_positive_rad": -0.00012726168675467834,
+        "h_negative_rad": 0.023905672955903998,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.0016756747685202512
+      },
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      }
+    },
+    "openarm_right_joint7": {
+      "status": "isaac_replay_candidate",
+      "enabled_for_isaac_replay": true,
+      "application_mode": "stateful_directional_replay",
+      "classification": [
+        "directional_backlash_or_friction_candidate"
+      ],
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.998663436010977,
+        "b_rad": -0.021952954081339092,
+        "h_positive_rad": 0.00122744490565985,
+        "h_negative_rad": 0.02411624785595038,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.0012134550586753478
+      },
+      "delay": {
+        "status": "not_identified_from_settled_endpoints",
+        "required_measurement": "timestamped ramps or steps with response onset and t90/t95 windows"
+      }
+    }
+  },
+  "import_contract": {
+    "input": "named canonical nominal joint targets in radians",
+    "output": "named Isaac replay targets in radians",
+    "direction": "positive/negative/hold from each joint's previous nominal target",
+    "limits": "apply the existing named-joint mechanical limit guard after this transform",
+    "exclusions": "a disabled provisional joint passes through unchanged"
+  }
+}

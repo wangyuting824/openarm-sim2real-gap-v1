@@ -19,10 +19,12 @@ def main():
     parser.add_argument("--target-rad", type=float, default=0.02)
     parser.add_argument("--hold-s", type=float, default=3.0)
     parser.add_argument("--tolerance-rad", type=float, default=0.01)
+    parser.add_argument("--discovery-timeout-s", type=float, default=12.0,
+                        help="Maximum wait for the temporary publisher to match the router.")
     parser.add_argument("--output", required=True)
     args = parser.parse_args()
-    if args.hold_s <= 0 or args.tolerance_rad <= 0:
-        parser.error("hold-s and tolerance-rad must be positive")
+    if args.hold_s <= 0 or args.tolerance_rad <= 0 or args.discovery_timeout_s <= 0:
+        parser.error("hold-s, tolerance-rad, and discovery-timeout-s must be positive")
 
     model = CompensationModel.from_path(args.config)
     expected_target = model.emulate(args.joint, args.target_rad)
@@ -58,11 +60,11 @@ def main():
 
     # A transient publisher can otherwise lose its first command while DDS is
     # still matching it to the long-running router.  This wait sends nothing.
-    discovery_deadline = time.monotonic() + 3.0
+    discovery_deadline = time.monotonic() + args.discovery_timeout_s
     while publisher.get_subscription_count() < 1 and time.monotonic() < discovery_deadline:
         spin_for(0.05)
     if publisher.get_subscription_count() < 1:
-        raise RuntimeError("sim-only router subscriber was not discovered before command")
+        raise RuntimeError("sim-only router subscriber was not discovered before command within %.1f s" % args.discovery_timeout_s)
     spin_for(0.25)
     receipt_before_target = len(receipts)
     publish(args.target_rad)
@@ -92,6 +94,7 @@ def main():
               "return_error_rad": return_error, "tolerance_rad": args.tolerance_rad,
               "all_receipts_sim_only": sim_only, "receipt_count": len(receipts),
               "target_receipt_count": target_receipts, "return_receipt_count": return_receipts,
+              "discovery_timeout_s": args.discovery_timeout_s,
               "sample_count": len(samples), "passed": passed, "samples": samples,
               "router_receipts": receipts}
     output = Path(args.output).resolve()

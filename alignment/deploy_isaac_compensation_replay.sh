@@ -5,6 +5,8 @@ set -euo pipefail
 
 host="${1:-tangyuan@192.168.18.72}"
 remote_root="/home/tangyuan/openarm_ws/alignment"
+calibration="alignment/calibrations/openarm_isaac_replay_calibration_v3.json"
+local_sha256="$(sha256sum "$calibration" | awk '{print $1}')"
 
 ssh "$host" "mkdir -p '$remote_root/calibrations'"
 scp \
@@ -15,8 +17,14 @@ scp \
   "$host:$remote_root/"
 scp alignment/calibrations/openarm_isaac_compare_replay_compensation_v1.json \
   alignment/calibrations/openarm_isaac_replay_calibration_v2.json \
-  alignment/calibrations/openarm_isaac_replay_calibration_v3.json \
+  "$calibration" \
   "$host:$remote_root/calibrations/"
 
-echo "ISAAC_COMPENSATION_REPLAY_FILES_DEPLOYED host=$host"
+remote_sha256="$(ssh "$host" "sha256sum '$remote_root/calibrations/openarm_isaac_replay_calibration_v3.json' | awk '{print \$1}'")"
+if [[ "$local_sha256" != "$remote_sha256" ]]; then
+  echo "REFUSED: remote v3 calibration checksum differs local=$local_sha256 remote=$remote_sha256" >&2
+  exit 1
+fi
+
+echo "ISAAC_COMPENSATION_REPLAY_FILES_DEPLOYED host=$host calibration=v3 sha256=$local_sha256"
 echo "In Isaac Script Editor, reload isaacsim_gap_control_daemon.py, then call /openarm/isaac_gap/enable_compensation_replay."

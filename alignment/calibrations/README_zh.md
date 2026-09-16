@@ -43,19 +43,11 @@ exec(compile(open("/home/tangyuan/openarm_ws/alignment/isaacsim_gap_control_daem
 
 ## 导入后的验证
 
-先在旧主机确认 router 为 `enable_real=false`，然后运行右 J5 smoke test 和其余 12 个已启用轴：
+部署、重载并确认 service 状态后，旧主机可一条命令验证全部 14 轴。该脚本自己启动/停止 `enable_real=false` 的临时 router：
 
 ```bash
 cd ~/openarm_ws
-bash alignment/start_sim_only_router.sh
-/usr/bin/python3 alignment/measure_sim_only_compensated_replay.py \
-  --config alignment/calibrations/openarm_isaac_replay_calibration_v3.json \
-  --joint openarm_right_joint5 --target-rad 0.02 --hold-s 3 \
-  --tolerance-rad 0.01 \
-  --output alignment/results/sim_only_compensated_replay_right_j5_v2.json
-OPENARM_COMPENSATION_CONFIG=alignment/calibrations/openarm_isaac_replay_calibration_v3.json \
-OPENARM_COMPENSATION_OUTPUT_DIR=alignment/results/sim_only_compensated_replay_batch_v2 \
-  bash alignment/run_sim_only_compensated_replay_batch.sh
+bash alignment/run_isaac_v3_compensation_validation.sh
 ```
 
 这次验收应覆盖全部 14 个关节。若任意一轴未通过，应停在 Isaac-only 排障；不得因补偿失败自动重发真机命令。

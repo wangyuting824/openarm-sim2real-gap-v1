@@ -1,0 +1,10 @@
+{
+  "kind": "openarm_isaac_v3_full14_compensated_replay_validation",
+  "calibration": "openarm_isaac_replay_calibration_v3.json",
+  "joint_count": 14,
+  "passed_joint_count": 14,
+  "all_passed": true,
+  "all_receipts_sim_only": true,
+  "max_target_error_rad": 0.0004344647129904851,
+  "max_return_error_rad": 0.0003405707252773734
+}

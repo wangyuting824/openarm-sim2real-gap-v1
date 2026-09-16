@@ -12,6 +12,8 @@ importable calibration package, and a reusable Codex skill.
   accepted real+simulation receipts; its within-session held-out replay MAE
   improved from `0.011820` to `0.000918 rad`.
 - The v3 calibration schema and 14 enabled entries pass offline validation.
+- The deployed v3 bridge passed full 14-axis Isaac-only replay: all receipts
+  were sim-only, with maximum target/return error `0.000434/0.000341 rad`.
 - The artifact modifies **Isaac compare/replay only**. It does not change real
   commands, USD, URDF, Isaac drive parameters, or hardware calibration.
 

@@ -203,11 +203,15 @@ the runtime parameter and each receipt to show``real_sent=false` before claiming
 a sim-only run.
 
 For a transient ROS publisher used in a sim-only check, wait for at least one
-matched router subscriber before the first command.  Require at least one receipt
-in the target window and one in the return window; a single return receipt is
-discovery failure, not a tracking or compensation failure.  If a compensation bridge
-stores prior targets to select direction, reload the bridge to reset that state
-before a clean batch validation.
+matched router subscriber before the first command.  Use a bounded discovery wait
+of at least 12 seconds on this cross-host route; a 3-second miss after a prior
+joint passes is DDS re-discovery failure, not a tracking or compensation failure.
+Require at least one receipt in the target window and one in the return window.
+If a compensation bridge stores prior targets to select direction, reload the
+bridge to reset that state before a clean batch validation. A visually imperceptible
+small compensated target does not disprove the bridge: use feedback/receipts as
+primary evidence, and an explicitly simulator-only larger visual check only with
+the Isaac timeline playing.
 
 For stepped physical identification, begin each waypoint receipt window
 before publishing the first substep, since the router can accept that substep

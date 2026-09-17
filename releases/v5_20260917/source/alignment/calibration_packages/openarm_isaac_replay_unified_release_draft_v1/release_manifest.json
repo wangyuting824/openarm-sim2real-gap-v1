@@ -1,0 +1,281 @@
+{
+  "schema_version": 1,
+  "kind": "openarm_isaac_replay_unified_release_draft",
+  "package_id": "openarm_isaac_replay_unified_release_draft_v1",
+  "created_at_utc": "2026-09-17T08:46:19.770279+00:00",
+  "deployment_status": "draft_not_default_not_deployable",
+  "scope": "all 14 arm joints; Isaac compare/replay layer only; no real controller, CAN, base USD, or URDF changes",
+  "promotion_rule": "A joint is promoted to the final unified release only after mapping audit and an independent-power-session validation. The package becomes deployable only when all 14 joints are promoted.",
+  "source_artifacts": {
+    "v3_calibration": {
+      "path": "alignment/calibrations/openarm_isaac_replay_calibration_v3.json",
+      "sha256": "660bce671fb68463ffe1925a9b603edf879586412edc508145d5c1e045a745ba"
+    },
+    "v4_right_j5_candidate": {
+      "path": "alignment/calibrations/openarm_isaac_replay_calibration_v4_candidate_right_j5.json",
+      "sha256": "e7ef68849b6d737ceea2dc45b783a9db33bbc258a818abc40ac82ac07d79cf68"
+    },
+    "right_j5_independent_package": {
+      "path": "alignment/calibration_packages/openarm_isaac_replay_v4_right_j5_independent_power_v2",
+      "validation_summary_sha256": "6dff69a2c5ea11001c8e7556aedb0ecf47f47b0a313fb86f5185f44d3853bf48"
+    }
+  },
+  "joint_count": 14,
+  "promoted_joint_count": 1,
+  "joints": [
+    {
+      "joint": "openarm_left_joint1",
+      "calibration_source": "v3_frozen_baseline_carried_by_v4",
+      "isaac_only_replay": "passed_14_axis_v3",
+      "same_power_session_holdout": "available_in_v3_evidence",
+      "independent_power_session": "not_yet_promoted",
+      "mapping_audit": "partial_offline",
+      "release_eligibility": "eligible_when_mapping_audit_and_independent_session_gate_pass",
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.8318519012267828,
+        "b_rad": 0.0005081544897580974,
+        "h_positive_rad": -0.0010143633046038444,
+        "h_negative_rad": 0.00016681456998685507,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.0025169452935111638
+      }
+    },
+    {
+      "joint": "openarm_left_joint2",
+      "calibration_source": "v3_frozen_baseline_carried_by_v4",
+      "isaac_only_replay": "passed_14_axis_v3",
+      "same_power_session_holdout": "available_in_v3_evidence",
+      "independent_power_session": "not_yet_promoted",
+      "mapping_audit": "partial_offline",
+      "release_eligibility": "eligible_when_mapping_audit_and_independent_session_gate_pass",
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.8591103963260629,
+        "b_rad": -0.0002015024399200153,
+        "h_positive_rad": -0.0020899026595767303,
+        "h_negative_rad": -0.0017444479519866567,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.0016098009926674734
+      }
+    },
+    {
+      "joint": "openarm_left_joint3",
+      "calibration_source": "v3_frozen_baseline_carried_by_v4",
+      "isaac_only_replay": "passed_14_axis_v3",
+      "same_power_session_holdout": "available_in_v3_evidence",
+      "independent_power_session": "not_yet_promoted",
+      "mapping_audit": "partial_offline",
+      "release_eligibility": "eligible_when_mapping_audit_and_independent_session_gate_pass",
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.9623719018542339,
+        "b_rad": -0.013061900633914752,
+        "h_positive_rad": 0.00250152897263964,
+        "h_negative_rad": 0.01937809141344294,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.003311881914486014
+      }
+    },
+    {
+      "joint": "openarm_left_joint4",
+      "calibration_source": "v3_frozen_baseline_carried_by_v4",
+      "isaac_only_replay": "passed_14_axis_v3",
+      "same_power_session_holdout": "available_in_v3_evidence",
+      "independent_power_session": "not_yet_promoted",
+      "mapping_audit": "partial_offline",
+      "release_eligibility": "eligible_when_mapping_audit_and_independent_session_gate_pass",
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.9255370307593102,
+        "b_rad": -0.0020110844246585603,
+        "h_positive_rad": 0.005094915413158763,
+        "h_negative_rad": 0.004044323801166567,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.0003331701623712106
+      }
+    },
+    {
+      "joint": "openarm_left_joint5",
+      "calibration_source": "v3_frozen_baseline_carried_by_v4",
+      "isaac_only_replay": "passed_14_axis_v3",
+      "same_power_session_holdout": "available_in_v3_evidence",
+      "independent_power_session": "not_yet_promoted",
+      "mapping_audit": "partial_offline",
+      "release_eligibility": "eligible_when_mapping_audit_and_independent_session_gate_pass",
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.9854419143472439,
+        "b_rad": -0.014941660483942423,
+        "h_positive_rad": 0.0014103068157307504,
+        "h_negative_rad": 0.02654706501413453,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.002749008448429156
+      }
+    },
+    {
+      "joint": "openarm_left_joint6",
+      "calibration_source": "v3_frozen_baseline_carried_by_v4",
+      "isaac_only_replay": "passed_14_axis_v3",
+      "same_power_session_holdout": "available_in_v3_evidence",
+      "independent_power_session": "not_yet_promoted",
+      "mapping_audit": "partial_offline",
+      "release_eligibility": "eligible_when_mapping_audit_and_independent_session_gate_pass",
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.9857013139488136,
+        "b_rad": -0.018906311443785698,
+        "h_positive_rad": 0.001857797150932249,
+        "h_negative_rad": 0.025267800474002424,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.002272514225203441
+      }
+    },
+    {
+      "joint": "openarm_left_joint7",
+      "calibration_source": "v3_frozen_baseline_carried_by_v4",
+      "isaac_only_replay": "passed_14_axis_v3",
+      "same_power_session_holdout": "available_in_v3_evidence",
+      "independent_power_session": "not_yet_promoted",
+      "mapping_audit": "partial_offline",
+      "release_eligibility": "eligible_when_mapping_audit_and_independent_session_gate_pass",
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.9178703963636662,
+        "b_rad": -0.0028454777497227504,
+        "h_positive_rad": -0.002770617034005483,
+        "h_negative_rad": 0.01779135895903643,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.0009512105304952423
+      }
+    },
+    {
+      "joint": "openarm_right_joint1",
+      "calibration_source": "v3_frozen_baseline_carried_by_v4",
+      "isaac_only_replay": "passed_14_axis_v3",
+      "same_power_session_holdout": "available_in_v3_evidence",
+      "independent_power_session": "not_yet_promoted",
+      "mapping_audit": "partial_offline",
+      "release_eligibility": "eligible_when_mapping_audit_and_independent_session_gate_pass",
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.8708673035141944,
+        "b_rad": 0.00279512823678184,
+        "h_positive_rad": -0.0012037179696803798,
+        "h_negative_rad": 0.0003619942850639514,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.0007630714824567457
+      }
+    },
+    {
+      "joint": "openarm_right_joint2",
+      "calibration_source": "v3_frozen_baseline_carried_by_v4",
+      "isaac_only_replay": "passed_14_axis_v3",
+      "same_power_session_holdout": "available_in_v3_evidence",
+      "independent_power_session": "not_yet_promoted",
+      "mapping_audit": "partial_offline",
+      "release_eligibility": "eligible_when_mapping_audit_and_independent_session_gate_pass",
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.8470964449494428,
+        "b_rad": -0.0038242832700169866,
+        "h_positive_rad": 0.0030050228151897516,
+        "h_negative_rad": 0.0024640367588814596,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.0008877370083120113
+      }
+    },
+    {
+      "joint": "openarm_right_joint3",
+      "calibration_source": "v3_frozen_baseline_carried_by_v4",
+      "isaac_only_replay": "passed_14_axis_v3",
+      "same_power_session_holdout": "available_in_v3_evidence",
+      "independent_power_session": "not_yet_promoted",
+      "mapping_audit": "partial_offline",
+      "release_eligibility": "eligible_when_mapping_audit_and_independent_session_gate_pass",
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.9909047509102487,
+        "b_rad": -0.0010065035462642434,
+        "h_positive_rad": -0.0001136907987675333,
+        "h_negative_rad": 0.0020609727504749434,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.0005972397045802241
+      }
+    },
+    {
+      "joint": "openarm_right_joint4",
+      "calibration_source": "v3_frozen_baseline_carried_by_v4",
+      "isaac_only_replay": "passed_14_axis_v3",
+      "same_power_session_holdout": "available_in_v3_evidence",
+      "independent_power_session": "not_yet_promoted",
+      "mapping_audit": "partial_offline",
+      "release_eligibility": "eligible_when_mapping_audit_and_independent_session_gate_pass",
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.9153754864229708,
+        "b_rad": -0.0033965629157716374,
+        "h_positive_rad": 0.00534729364319792,
+        "h_negative_rad": 0.00887501372841669,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.0002492812786440338
+      }
+    },
+    {
+      "joint": "openarm_right_joint5",
+      "calibration_source": "v4_right_j5_candidate",
+      "isaac_only_replay": "passed_14_axis_v3",
+      "same_power_session_holdout": "available_in_v3_evidence",
+      "independent_power_session": "validated_v4_holdout_v2",
+      "mapping_audit": "partial_offline",
+      "release_eligibility": "pending_mapping_audit_completion",
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.992472215864304,
+        "b_rad": -0.005848251233383855,
+        "h_positive_rad": 0.0013351644159604937,
+        "h_negative_rad": 0.02377864245568471,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.0015509414543311579
+      }
+    },
+    {
+      "joint": "openarm_right_joint6",
+      "calibration_source": "v3_frozen_baseline_carried_by_v4",
+      "isaac_only_replay": "passed_14_axis_v3",
+      "same_power_session_holdout": "available_in_v3_evidence",
+      "independent_power_session": "not_yet_promoted",
+      "mapping_audit": "partial_offline",
+      "release_eligibility": "eligible_when_mapping_audit_and_independent_session_gate_pass",
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.9322212862769605,
+        "b_rad": -0.010460907498095853,
+        "h_positive_rad": -0.00012726168675467834,
+        "h_negative_rad": 0.023905672955903998,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.0016756747685202512
+      }
+    },
+    {
+      "joint": "openarm_right_joint7",
+      "calibration_source": "v3_frozen_baseline_carried_by_v4",
+      "isaac_only_replay": "passed_14_axis_v3",
+      "same_power_session_holdout": "available_in_v3_evidence",
+      "independent_power_session": "not_yet_promoted",
+      "mapping_audit": "partial_offline",
+      "release_eligibility": "eligible_when_mapping_audit_and_independent_session_gate_pass",
+      "emulation": {
+        "formula": "q_emulated_rad = a*q_nominal_rad + b_rad + h(direction)",
+        "a": 0.998663436010977,
+        "b_rad": -0.021952954081339092,
+        "h_positive_rad": 0.00122744490565985,
+        "h_negative_rad": 0.02411624785595038,
+        "h_hold_rad": 0.0,
+        "residual_std_rad": 0.0012134550586753478
+      }
+    }
+  ],
+  "known_unit_boundary": "Isaac articulation control uses radians; raw USD revolute limits and DriveAPI angular targets use degrees. Audit must prove each bridge conversion.",
+  "mapping_audit_status": "partial_offline: names, URDF type, axes, and limits checked for nine scale candidates; live Isaac, real encoder/transmission/profile, and physical direction/limit evidence remain."
+}

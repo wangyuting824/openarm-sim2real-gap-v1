@@ -1,0 +1,478 @@
+{
+  "schema_version": 1,
+  "kind": "openarm_isaac_replay_static_release",
+  "package_id": "openarm_isaac_replay_v4_homed_full14_static_release_v1",
+  "created_at_utc": "2026-09-17T10:02:27.275556+00:00",
+  "scope": "14 arm joints; static Isaac replay/training layer only",
+  "deployment_status": "static_release; dynamic_not_identified; no real controller/CAN/USD/URDF modification",
+  "calibration_sha256": "e7ef68849b6d737ceea2dc45b783a9db33bbc258a818abc40ac82ac07d79cf68",
+  "homed_validation": {
+    "trial_id": "openarm_static_independent_session_v4_homed_full14",
+    "zero_settle_tolerance_rad": 0.03,
+    "summary_sha256": "2ddce22b9f0f2ce685b35dbc251953fb9d530e25b39033967e2079182024ea1d"
+  },
+  "joint_count": 14,
+  "validated_joint_count": 12,
+  "accepted_with_residual_randomization": {
+    "openarm_left_joint6": {
+      "static_residual_max_abs_rad": 0.011107266294720475,
+      "training_randomization_abs_rad": 0.012
+    },
+    "openarm_right_joint5": {
+      "static_residual_max_abs_rad": 0.011736121356369367,
+      "training_randomization_abs_rad": 0.012
+    }
+  },
+  "joints": [
+    {
+      "joint": "openarm_left_joint1",
+      "status": "independent_session_validated",
+      "sample_count": 18,
+      "raw_nominal_minus_real": {
+        "count": 18,
+        "mae_rad": 0.005506811457830098,
+        "max_abs_rad": 0.016075379568169984,
+        "mean_rad": -0.0031242847333486415
+      },
+      "emulated_sim_minus_real": {
+        "count": 18,
+        "mae_rad": 0.0019340042994768522,
+        "max_abs_rad": 0.004267834253711911,
+        "mean_rad": 0.00037608333373779286
+      },
+      "sim_tracking": {
+        "count": 18,
+        "mae_rad": 0.000378653490380327,
+        "max_abs_rad": 0.001450704418046421,
+        "mean_rad": -0.00018268330813599643
+      },
+      "gates": {
+        "recorder_passed": true,
+        "all_waypoints_complete": true,
+        "all_receipts_present": true,
+        "sim_tracking_within_tolerance": true,
+        "emulated_mae_no_worse_than_raw": true,
+        "emulated_max_abs_screening": true
+      },
+      "release_status": "validated"
+    },
+    {
+      "joint": "openarm_left_joint2",
+      "status": "independent_session_validated",
+      "sample_count": 18,
+      "raw_nominal_minus_real": {
+        "count": 18,
+        "mae_rad": 0.006375727982503086,
+        "max_abs_rad": 0.016838330663004802,
+        "mean_rad": -0.004459449149309573
+      },
+      "emulated_sim_minus_real": {
+        "count": 18,
+        "mae_rad": 0.0010271514725358106,
+        "max_abs_rad": 0.0019846604171345206,
+        "mean_rad": 2.8928674339765178e-05
+      },
+      "sim_tracking": {
+        "count": 18,
+        "mae_rad": 0.00020817781975276874,
+        "max_abs_rad": 0.0021571033700525655,
+        "mean_rad": -0.00010666134068910131
+      },
+      "gates": {
+        "recorder_passed": true,
+        "all_waypoints_complete": true,
+        "all_receipts_present": true,
+        "sim_tracking_within_tolerance": true,
+        "emulated_mae_no_worse_than_raw": true,
+        "emulated_max_abs_screening": true
+      },
+      "release_status": "validated"
+    },
+    {
+      "joint": "openarm_left_joint3",
+      "status": "independent_session_validated",
+      "sample_count": 18,
+      "raw_nominal_minus_real": {
+        "count": 18,
+        "mae_rad": 0.013305867093919352,
+        "max_abs_rad": 0.020653086137178894,
+        "mean_rad": -0.0025308783262548936
+      },
+      "emulated_sim_minus_real": {
+        "count": 18,
+        "mae_rad": 0.003613246794162824,
+        "max_abs_rad": 0.006194995604728248,
+        "mean_rad": -0.0005223403686838898
+      },
+      "sim_tracking": {
+        "count": 18,
+        "mae_rad": 0.00017230423129724828,
+        "max_abs_rad": 0.0025348669098528703,
+        "mean_rad": 0.00017230423129724828
+      },
+      "gates": {
+        "recorder_passed": true,
+        "all_waypoints_complete": true,
+        "all_receipts_present": true,
+        "sim_tracking_within_tolerance": true,
+        "emulated_mae_no_worse_than_raw": true,
+        "emulated_max_abs_screening": true
+      },
+      "release_status": "validated"
+    },
+    {
+      "joint": "openarm_left_joint4",
+      "status": "independent_session_validated",
+      "sample_count": 15,
+      "raw_nominal_minus_real": {
+        "count": 15,
+        "mae_rad": 0.0027135627272959575,
+        "max_abs_rad": 0.0068932631418327645,
+        "mean_rad": -0.0023610793214822955
+      },
+      "emulated_sim_minus_real": {
+        "count": 15,
+        "mae_rad": 0.0014003087011932535,
+        "max_abs_rad": 0.004927404328897822,
+        "mean_rad": 0.0005626705441591421
+      },
+      "sim_tracking": {
+        "count": 15,
+        "mae_rad": 0.0007837682930941128,
+        "max_abs_rad": 0.004521127825523684,
+        "mean_rad": -0.00018095124969095497
+      },
+      "gates": {
+        "recorder_passed": true,
+        "all_waypoints_complete": true,
+        "all_receipts_present": true,
+        "sim_tracking_within_tolerance": true,
+        "emulated_mae_no_worse_than_raw": true,
+        "emulated_max_abs_screening": true
+      },
+      "release_status": "validated"
+    },
+    {
+      "joint": "openarm_left_joint5",
+      "status": "independent_session_validated",
+      "sample_count": 18,
+      "raw_nominal_minus_real": {
+        "count": 18,
+        "mae_rad": 0.011843544162152617,
+        "max_abs_rad": 0.016048676279850585,
+        "mean_rad": -0.0031030916473810074
+      },
+      "emulated_sim_minus_real": {
+        "count": 18,
+        "mae_rad": 0.0027379513120398733,
+        "max_abs_rad": 0.005398705485232469,
+        "mean_rad": 0.0017945622464213705
+      },
+      "sim_tracking": {
+        "count": 18,
+        "mae_rad": 0.0002464493285073103,
+        "max_abs_rad": 0.0012221959845199193,
+        "mean_rad": -0.00011064977467176374
+      },
+      "gates": {
+        "recorder_passed": true,
+        "all_waypoints_complete": true,
+        "all_receipts_present": true,
+        "sim_tracking_within_tolerance": true,
+        "emulated_mae_no_worse_than_raw": true,
+        "emulated_max_abs_screening": true
+      },
+      "release_status": "validated"
+    },
+    {
+      "joint": "openarm_left_joint6",
+      "status": "not_promoted",
+      "sample_count": 18,
+      "raw_nominal_minus_real": {
+        "count": 18,
+        "mae_rad": 0.014217169790527609,
+        "max_abs_rad": 0.020626382848859495,
+        "mean_rad": -0.004925697040597518
+      },
+      "emulated_sim_minus_real": {
+        "count": 18,
+        "mae_rad": 0.002590672539665088,
+        "max_abs_rad": 0.011107266294720475,
+        "mean_rad": -0.0008956026996834115
+      },
+      "sim_tracking": {
+        "count": 18,
+        "mae_rad": 0.00011435066739682535,
+        "max_abs_rad": 0.0018400662686915703,
+        "mean_rad": 9.010114023557135e-05
+      },
+      "gates": {
+        "recorder_passed": true,
+        "all_waypoints_complete": true,
+        "all_receipts_present": true,
+        "sim_tracking_within_tolerance": true,
+        "emulated_mae_no_worse_than_raw": true,
+        "emulated_max_abs_screening": false
+      },
+      "release_status": "accepted_with_residual_randomization"
+    },
+    {
+      "joint": "openarm_left_joint7",
+      "status": "independent_session_validated",
+      "sample_count": 18,
+      "raw_nominal_minus_real": {
+        "count": 18,
+        "mae_rad": 0.013899273501013101,
+        "max_abs_rad": 0.01874570840009185,
+        "mean_rad": 0.0013262633198544659
+      },
+      "emulated_sim_minus_real": {
+        "count": 18,
+        "mae_rad": 0.00249479951754989,
+        "max_abs_rad": 0.004899492617626677,
+        "mean_rad": -0.001813492829679575
+      },
+      "sim_tracking": {
+        "count": 18,
+        "mae_rad": 0.00035106742192341005,
+        "max_abs_rad": 0.0030852028768337952,
+        "mean_rad": -0.00034988429842492785
+      },
+      "gates": {
+        "recorder_passed": true,
+        "all_waypoints_complete": true,
+        "all_receipts_present": true,
+        "sim_tracking_within_tolerance": true,
+        "emulated_mae_no_worse_than_raw": true,
+        "emulated_max_abs_screening": true
+      },
+      "release_status": "validated"
+    },
+    {
+      "joint": "openarm_right_joint1",
+      "status": "independent_session_validated",
+      "sample_count": 18,
+      "raw_nominal_minus_real": {
+        "count": 18,
+        "mae_rad": 0.005358459856056662,
+        "max_abs_rad": 0.014168001831082938,
+        "mean_rad": -0.001280486254164497
+      },
+      "emulated_sim_minus_real": {
+        "count": 18,
+        "mae_rad": 0.0007504612962036342,
+        "max_abs_rad": 0.0012896225063006028,
+        "mean_rad": -0.00013252336677579044
+      },
+      "sim_tracking": {
+        "count": 18,
+        "mae_rad": 0.0004270377880163982,
+        "max_abs_rad": 0.001740878557832358,
+        "mean_rad": -0.0002980000945347984
+      },
+      "gates": {
+        "recorder_passed": true,
+        "all_waypoints_complete": true,
+        "all_receipts_present": true,
+        "sim_tracking_within_tolerance": true,
+        "emulated_mae_no_worse_than_raw": true,
+        "emulated_max_abs_screening": true
+      },
+      "release_status": "validated"
+    },
+    {
+      "joint": "openarm_right_joint2",
+      "status": "independent_session_validated",
+      "sample_count": 18,
+      "raw_nominal_minus_real": {
+        "count": 18,
+        "mae_rad": 0.006439307240405988,
+        "max_abs_rad": 0.016838330663004802,
+        "mean_rad": -0.0027428091859312323
+      },
+      "emulated_sim_minus_real": {
+        "count": 18,
+        "mae_rad": 0.0018656368763200328,
+        "max_abs_rad": 0.003982243238185745,
+        "mean_rad": 0.0009311568246231792
+      },
+      "sim_tracking": {
+        "count": 18,
+        "mae_rad": 0.00025433540514992306,
+        "max_abs_rad": 0.0029063231727268907,
+        "mean_rad": 0.00015607694580742156
+      },
+      "gates": {
+        "recorder_passed": true,
+        "all_waypoints_complete": true,
+        "all_receipts_present": true,
+        "sim_tracking_within_tolerance": true,
+        "emulated_mae_no_worse_than_raw": true,
+        "emulated_max_abs_screening": true
+      },
+      "release_status": "validated"
+    },
+    {
+      "joint": "openarm_right_joint3",
+      "status": "independent_session_validated",
+      "sample_count": 18,
+      "raw_nominal_minus_real": {
+        "count": 18,
+        "mae_rad": 0.003323923603163812,
+        "max_abs_rad": 0.005394064240482527,
+        "mean_rad": -0.0002208319557828048
+      },
+      "emulated_sim_minus_real": {
+        "count": 18,
+        "mae_rad": 0.0019344183637015375,
+        "max_abs_rad": 0.0033930771537722393,
+        "mean_rad": 6.249176099635021e-05
+      },
+      "sim_tracking": {
+        "count": 18,
+        "mae_rad": 7.357684295152645e-06,
+        "max_abs_rad": 0.00011254002790743456,
+        "mean_rad": -6.228408474391947e-06
+      },
+      "gates": {
+        "recorder_passed": true,
+        "all_waypoints_complete": true,
+        "all_receipts_present": true,
+        "sim_tracking_within_tolerance": true,
+        "emulated_mae_no_worse_than_raw": true,
+        "emulated_max_abs_screening": true
+      },
+      "release_status": "validated"
+    },
+    {
+      "joint": "openarm_right_joint4",
+      "status": "independent_session_validated",
+      "sample_count": 15,
+      "raw_nominal_minus_real": {
+        "count": 15,
+        "mae_rad": 0.0051041428244450555,
+        "max_abs_rad": 0.00918211642633722,
+        "mean_rad": -0.001547264820325156
+      },
+      "emulated_sim_minus_real": {
+        "count": 15,
+        "mae_rad": 0.0012707883199507108,
+        "max_abs_rad": 0.005797399778524337,
+        "mean_rad": 0.0011650396168615628
+      },
+      "sim_tracking": {
+        "count": 15,
+        "mae_rad": 0.0006443610640823801,
+        "max_abs_rad": 0.00496941733095882,
+        "mean_rad": 1.8227913378795805e-05
+      },
+      "gates": {
+        "recorder_passed": true,
+        "all_waypoints_complete": true,
+        "all_receipts_present": true,
+        "sim_tracking_within_tolerance": true,
+        "emulated_mae_no_worse_than_raw": true,
+        "emulated_max_abs_screening": true
+      },
+      "release_status": "validated"
+    },
+    {
+      "joint": "openarm_right_joint5",
+      "status": "not_promoted",
+      "sample_count": 18,
+      "raw_nominal_minus_real": {
+        "count": 18,
+        "mae_rad": 0.01445029373617158,
+        "max_abs_rad": 0.017547875181200823,
+        "mean_rad": 0.002089214414689284
+      },
+      "emulated_sim_minus_real": {
+        "count": 18,
+        "mae_rad": 0.0046593033022321135,
+        "max_abs_rad": 0.011736121356369367,
+        "mean_rad": 0.0046593033022321135
+      },
+      "sim_tracking": {
+        "count": 18,
+        "mae_rad": 0.00030986019086072747,
+        "max_abs_rad": 0.001570050068853815,
+        "mean_rad": 0.00030986019086072747
+      },
+      "gates": {
+        "recorder_passed": true,
+        "all_waypoints_complete": true,
+        "all_receipts_present": true,
+        "sim_tracking_within_tolerance": true,
+        "emulated_mae_no_worse_than_raw": true,
+        "emulated_max_abs_screening": false
+      },
+      "release_status": "accepted_with_residual_randomization"
+    },
+    {
+      "joint": "openarm_right_joint6",
+      "status": "independent_session_validated",
+      "sample_count": 18,
+      "raw_nominal_minus_real": {
+        "count": 18,
+        "mae_rad": 0.013793308071174931,
+        "max_abs_rad": 0.019890135042344076,
+        "mean_rad": 0.00011825741969933672
+      },
+      "emulated_sim_minus_real": {
+        "count": 18,
+        "mae_rad": 0.0013608647017792446,
+        "max_abs_rad": 0.003132142941511873,
+        "mean_rad": -0.0003769959950425456
+      },
+      "sim_tracking": {
+        "count": 18,
+        "mae_rad": 9.902262968099264e-06,
+        "max_abs_rad": 0.00013048026882853808,
+        "mean_rad": -8.559255517281616e-06
+      },
+      "gates": {
+        "recorder_passed": true,
+        "all_waypoints_complete": true,
+        "all_receipts_present": true,
+        "sim_tracking_within_tolerance": true,
+        "emulated_mae_no_worse_than_raw": true,
+        "emulated_max_abs_screening": true
+      },
+      "release_status": "validated"
+    },
+    {
+      "joint": "openarm_right_joint7",
+      "status": "independent_session_validated",
+      "sample_count": 18,
+      "raw_nominal_minus_real": {
+        "count": 18,
+        "mae_rad": 0.012203826623602393,
+        "max_abs_rad": 0.020271610589761485,
+        "mean_rad": -0.006557564660105324
+      },
+      "emulated_sim_minus_real": {
+        "count": 18,
+        "mae_rad": 0.002676766359726912,
+        "max_abs_rad": 0.004608726005725927,
+        "mean_rad": -0.002676766359726912
+      },
+      "sim_tracking": {
+        "count": 18,
+        "mae_rad": 0.00022464189200173661,
+        "max_abs_rad": 0.001135602765916616,
+        "mean_rad": 8.906174853267541e-05
+      },
+      "gates": {
+        "recorder_passed": true,
+        "all_waypoints_complete": true,
+        "all_receipts_present": true,
+        "sim_tracking_within_tolerance": true,
+        "emulated_mae_no_worse_than_raw": true,
+        "emulated_max_abs_screening": true
+      },
+      "release_status": "validated"
+    }
+  ],
+  "dynamic_status": "not_identified: measure per-axis action/observation timing and response ranges before dynamic randomization",
+  "promotion_rule": "Any future parameter change creates a new package and requires new same-session and independent-session evidence."
+}

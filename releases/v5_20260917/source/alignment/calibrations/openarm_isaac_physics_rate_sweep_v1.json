@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "kind": "openarm_isaac_physics_rate_sweep",
+  "scope": "Isaac-only live PhysicsScene scan; no base USD edit",
+  "physics_scene_path": "/PhysicsScene",
+  "baseline": {"candidate_id": "physics_hz_60", "physx_time_steps_per_second": 60},
+  "candidates": [
+    {"candidate_id": "physics_hz_120", "physx_time_steps_per_second": 120},
+    {"candidate_id": "physics_hz_240", "physx_time_steps_per_second": 240}
+  ],
+  "selection_gate": "same J7 bounded curve; improve t90 without worsening overshoot or steady-state error",
+  "note": "Velocity limits and solver iteration counts are read-only audited first. Do not co-tune drive gains in this scan."
+}

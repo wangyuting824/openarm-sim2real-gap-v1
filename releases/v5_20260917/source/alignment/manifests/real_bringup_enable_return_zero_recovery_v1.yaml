@@ -1,0 +1,32 @@
+# This recovery is a physical action: OpenArmHW enables both arms then calls
+# return_to_zero() during activation.  It is not a Sim2Real measurement.
+trial_id: openarm_real_bringup_enable_return_zero_recovery_v1
+mode: hardware_recovery
+host_role: real_can_host
+can_interfaces: [can0, can1]
+can_profile:
+  nominal_bitrate: 1000000
+  data_bitrate: 5000000
+  fd: true
+can_writer: one_ros2_control_node_only
+action:
+  command: bash alignment/start_real_openarm.sh
+  enables_motors: true
+  return_to_zero_on_activate: true
+  publishes_no_experiment_trajectory: true
+gates:
+  can0_and_can1_up: true
+  no_existing_ros2_control_node: true
+  emergency_stop_released_and_immediately_available: true
+  workspace_clear: true
+  known_safe_posture_for_return_to_zero: true
+  person_at_power_disconnect: true
+  no_other_real_command_publisher: true
+postconditions:
+  operator_confirms_all_motor_leds_green: true
+  joint_states_complete_and_fresh: true
+  no_router_enable_real: true
+failure_action:
+  stop_bringup: true
+  no_position_test: true
+  record_logs_and_can_status: true

@@ -1,0 +1,28 @@
+# Prepared only: physical execution requires a fresh explicit authorization.
+trial_id: openarm_real_sim_right_j6_j7_offset_identification_retry_v4
+mode: measure
+mapping_version: named-map-v1
+joint_set: [openarm_right_joint6, openarm_right_joint7]
+trajectory_per_joint:
+  reference: measured joint start position
+  waypoints_rad: [0.05, 0.0, -0.05, 0.0, 0.10, 0.0]
+  repetitions: 3
+  hold_s: 3.0
+real_publish_hz: 50
+max_excursion_rad: 0.15
+max_substep_rad: 0.025
+state_discovery:
+  attempts_before_motion: 3
+  seconds_per_attempt: 3.0
+  on_failure: stop_router_and_abort_trial
+gates:
+  all_motor_leds_green_operator_confirmed: true
+  can0_and_can1_up_with_fresh_feedback: true
+  state_stale_s: 0.25
+  sim_target_and_return_error_rad: 0.01
+  one_active_command_publisher: true
+  operator_stop: true
+outputs:
+  raw_directory: alignment/results/openarm_real_sim_right_j6_j7_offset_identification_retry_v4
+  fit: q_real = a*q_sim + b + h(approach_direction)
+  candidate_application: compare_or_replay_layer_only_until_independent_validation

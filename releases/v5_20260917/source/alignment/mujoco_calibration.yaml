@@ -1,0 +1,10 @@
+# Candidate MuJoCo-side comparison correction for openarm_left_joint5.
+# Convention: sim_corrected = sim_raw + sim_offset_rad.
+# Derived from positive/negative real-minus-sim stable-window estimates.
+openarm_left_joint5:
+  sim_offset_rad: -0.0037000192045282855
+  sim_offset_deg: -0.211992
+  source_positive_error_rad: -0.015681207951699812
+  source_negative_error_rad: 0.00828116954264324
+  status: comparison_only
+  note: "Do not apply to physics or runtime until hysteresis is resolved."

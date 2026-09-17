@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "scope": "Isaac-only live runtime performance scan; no USD or robot command edit",
+  "setting": "/persistent/simulation/minFrameRate",
+  "baseline": {"candidate_id": "min_frame_rate_30", "min_frame_rate": 30},
+  "candidates": [
+    {"candidate_id": "min_frame_rate_15", "min_frame_rate": 15},
+    {"candidate_id": "min_frame_rate_10", "min_frame_rate": 10}
+  ],
+  "selection_gate": "improve physics_realtime_factor while retaining deterministic physics step size; compare GUI and headless separately",
+  "note": "Lowering this clamp permits more catch-up physics substeps after slow app frames. It can reduce GUI responsiveness and is not a substitute for reducing rendering or sensor load."
+}

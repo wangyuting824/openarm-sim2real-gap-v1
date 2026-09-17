@@ -1,0 +1,37 @@
+trial_id: openarm_static_independent_session_v4_homed_full14
+mode: measure
+purpose: standardized return-to-zero then frozen-v4 independent-power static validation
+scope: all 14 arm joints
+authorization:
+  real_authorization_required: true
+  motor_enable_authorized: true
+  return_to_zero_authorized: true
+  router_enable_real: true
+  router_real_authorization_id: openarm_static_independent_session_v4_homed_full14
+startup:
+  return_to_zero_on_activate: true
+  skip_return_to_zero_forbidden: true
+  zero_settle_required: true
+  zero_tolerance_rad: 0.03
+calibration_under_test:
+  path: alignment/calibrations/openarm_isaac_replay_calibration_v4_candidate_right_j5.json
+  sha256: e7ef68849b6d737ceea2dc45b783a9db33bbc258a818abc40ac82ac07d79cf68
+  frozen: true
+  application: isaac_compare_replay_only
+trajectory_per_joint:
+  standard_relative_waypoints_rad: [0.05, 0.0, -0.05, 0.0, 0.10, 0.0]
+  joint4_relative_waypoints_rad: [0.05, 0.0, 0.10, 0.05, 0.0]
+  hold_s: 3.0
+  repetitions: 3
+  max_excursion_rad: 0.15
+  max_substep_rad: 0.025
+  return_to_measured_start: true
+gates:
+  all_14_axes_at_zero_and_settled: required
+  fresh_real_and_sim_state: required
+  single_can_writer: required
+  sim_tracking_target: v4_emulated_target
+  sim_tracking_tolerance_rad: 0.01
+outputs:
+  directory: alignment/results/openarm_static_independent_session_v4_homed_full14
+  raw_per_joint: <joint>.json

@@ -1,0 +1,34 @@
+{
+  "kind": "openarm_right_j5_v4_independent_power_holdout_summary",
+  "trial_id": "openarm_right_j5_v4_independent_power_holdout_v2",
+  "input": "alignment/results/openarm_right_j5_v4_independent_power_holdout_v2/openarm_right_joint5.json",
+  "frozen_calibration": "alignment/calibrations/openarm_isaac_replay_calibration_v4_candidate_right_j5.json",
+  "sample_count": 18,
+  "raw_nominal_minus_real": {
+    "count": 18,
+    "mae_rad": 0.0111865584971557,
+    "max_abs_rad": 0.014877546349278958,
+    "mean_rad": -0.0020222442630313995
+  },
+  "emulated_sim_minus_real": {
+    "count": 18,
+    "mae_rad": 0.0017179147917431889,
+    "max_abs_rad": 0.002156070570764612,
+    "mean_rad": 0.00037553900554213965
+  },
+  "sim_tracking": {
+    "count": 18,
+    "mae_rad": 0.0003286173482840191,
+    "max_abs_rad": 0.0015881266623056778,
+    "mean_rad": 0.0003286173482840191
+  },
+  "gates": {
+    "trial_recorder_passed": true,
+    "all_waypoints_complete": true,
+    "sim_tracking_max_abs_le_0p01": true,
+    "emulated_mae_no_worse_than_raw": true,
+    "paired_max_abs_le_0p01_screening": true
+  },
+  "independent_session_validated": true,
+  "interpretation": "frozen v4 validated on a fresh independent power session"
+}

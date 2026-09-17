@@ -1,0 +1,37 @@
+# Fresh authorization after v1 was invalidated by runner termination.
+trial_id: openarm_right_j5_v4_independent_power_holdout_v2
+supersedes: openarm_right_j5_v4_independent_power_holdout_v1
+invalidated_prior_trial_reason: runner_terminated_before_recorder_artifact_and_router_cleanup
+power_session_relation: retry within the same fresh independent-power session as v1; no additional power cycle required
+mode: measurement
+authorization:
+  real_authorization_required: true
+  can_recovery_authorized: true
+  motor_enable_authorized: true
+  router_enable_real: true
+  router_real_authorization_id: openarm_right_j5_v4_independent_power_holdout_v2
+  single_use: true
+independent_power_session:
+  required: true
+  operator_attestation_required: true
+calibration_under_test:
+  path: alignment/calibrations/openarm_isaac_replay_calibration_v4_candidate_right_j5.json
+  sha256: e7ef68849b6d737ceea2dc45b783a9db33bbc258a818abc40ac82ac07d79cf68
+  frozen: true
+  application: Isaac compare/replay only; real remains canonical nominal
+joints: [openarm_right_joint5]
+trajectory:
+  reference: measured right J5 start after fresh power-on
+  relative_waypoints_rad: [0.05, 0.0, -0.05, 0.0, 0.10, 0.0]
+  repetitions: 3
+  hold_s: 3.0
+  max_excursion_rad: 0.10
+  max_substep_rad: 0.025
+  real_publish_hz: 50.0
+  return: measured_start_position
+promotion_gate:
+  sim_tracking_abs_error_max_rad: 0.01
+  paired_emulated_minus_real_mae_no_worse_than_raw_nominal_mae: true
+  paired_emulated_minus_real_max_abs_rad_screening: 0.01
+outputs:
+  directory: alignment/results/openarm_right_j5_v4_independent_power_holdout_v2

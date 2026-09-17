@@ -1,0 +1,20 @@
+{
+  "sim_offsets": {
+    "openarm_right_joint1": -0.0008774172,
+    "openarm_right_joint2": -0.0060438776,
+    "openarm_right_joint3": 0.0005722528,
+    "openarm_right_joint4": 0.0021018781,
+    "openarm_right_joint5": 0.0012961017,
+    "openarm_right_joint7": -0.0017488073,
+    "openarm_left_joint1": -0.0024509767,
+    "openarm_left_joint2": -0.0026148138,
+    "openarm_left_joint3": -0.0020981896,
+    "openarm_left_joint4": -0.0012660495,
+    "openarm_left_joint7": 0.0128728625
+  },
+  "sim_direction_offsets": {
+    "openarm_left_joint5": {"positive": -0.0067, "negative": 0.01319},
+    "openarm_left_joint6": {"positive": -0.02136, "negative": 0.01579},
+    "openarm_right_joint6": {"positive": -0.01283, "negative": 0.00992}
+  }
+}

@@ -1,0 +1,23 @@
+trial_id: openarm_real_sim_right_j7_streamed_plus_0p1_v1
+mode: measure
+canonical_action:
+  joint: openarm_right_joint7
+  requested_delta_rad: 0.1
+  max_excursion_rad: 0.15
+  substep_rad: 0.025
+  router_real_publish_hz: 50.0
+  target_hold_s: 2.0
+  return_target: measured_real_initial_position
+safety:
+  real_authorization_id: openarm_real_sim_right_j7_streamed_plus_0p1_v1
+  single_command_route: true
+  real_state_max_age_s: 0.25
+  maximum_canonical_substep_rad: 0.03
+  maximum_total_excursion_rad: 0.15
+  abort_on:
+    - stale_or_missing_real_joint_state
+    - multiple_real_command_publishers
+    - target_outside_mechanical_limits
+    - operator_stop
+recording:
+  output: alignment/results/openarm_real_sim_right_j7_streamed_plus_0p1_v1/metrics.json

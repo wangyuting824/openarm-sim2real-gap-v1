@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "kind": "openarm_calibration_bundle",
+  "package_id": "openarm_calibration_bundle_v5_static14_gripper_candidate_v1",
+  "created_at_utc": "2026-09-17T10:00:00Z",
+  "deployment_status": "draft_static_validated_gripper_incomplete",
+  "scope": "14-axis Isaac replay static alignment plus no-load gripper kinematic calibration candidate",
+  "promotion_rule": "Do not enable a final default until mapping audit and required independent-session evidence are complete; gripper requires physical opening-width held-out validation.",
+  "artifacts": [
+    {"role": "arm_static_v3_baseline", "path": "alignment/calibrations/openarm_isaac_replay_calibration_v3.json", "sha256": "660bce671fb68463ffe1925a9b603edf879586412edc508145d5c1e045a745ba"},
+    {"role": "right_j5_v4_candidate", "path": "alignment/calibrations/openarm_isaac_replay_calibration_v4_candidate_right_j5.json", "sha256": "e7ef68849b6d737ceea2dc45b783a9db33bbc258a818abc40ac82ac07d79cf68"},
+    {"role": "homed_full14_static_summary", "path": "alignment/results/openarm_static_independent_session_v4_homed_full14/independent_session_summary.json", "sha256": "2ddce22b9f0f2ce685b35dbc251953fb9d530e25b39033967e2079182024ea1d"},
+    {"role": "joint_name_mapping", "path": "alignment/openarm_isaacsim_joint_map.json", "sha256": "3b3fb99fd0f5b294ec687fc94e3c45c11f58021f7f3c2a9a6f9ac7354f16867c"},
+    {"role": "gripper_scan_invalid_left", "path": "alignment/results/openarm_gripper_kinematic_scan_v1/left.json", "sha256": "ba4a57d11d63583587b35a18faeb997181424e63685153ec285f02f79cda8a57", "status": "invalid_no_accepted_real_receipt"},
+    {"role": "latest_zero_gate", "path": "alignment/results/openarm_gripper_kinematic_scan_v1/zero_settle_before_gripper_retry.json", "sha256": "6bd2489c3dc572e12cdd3ff64495d7aecac1f9236c6677210e4b26326144dcca", "status": "passed"}
+  ],
+  "validated": {"arm_static_isaac_only": true, "arm_homed_independent_session": true, "gripper_kinematic": false, "tf_tcp": false, "dynamic_gap": false},
+  "safety": {"real_controller_changed": false, "can_changed": false, "base_usd_changed": false, "base_urdf_changed": false}
+}

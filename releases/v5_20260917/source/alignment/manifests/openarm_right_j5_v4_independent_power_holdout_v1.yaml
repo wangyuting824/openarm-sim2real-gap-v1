@@ -1,0 +1,44 @@
+# Fresh independent-power holdout for the Isaac-only R J5 v4 candidate.
+# This manifest freezes the candidate: it must not be refit from this trial.
+trial_id: openarm_right_j5_v4_independent_power_holdout_v1
+mode: measurement
+authorization:
+  real_authorization_required: true
+  can_recovery_authorized: true
+  motor_enable_authorized: true
+  router_enable_real: true
+  router_real_authorization_id: openarm_right_j5_v4_independent_power_holdout_v1
+  single_use: true
+independent_power_session:
+  required: true
+  operator_attestation_required: true
+  required_record: power_cycle_time, payload, temperature_or_ambient, initial_pose, CAN_profile
+calibration_under_test:
+  path: alignment/calibrations/openarm_isaac_replay_calibration_v4_candidate_right_j5.json
+  sha256: e7ef68849b6d737ceea2dc45b783a9db33bbc258a818abc40ac82ac07d79cf68
+  frozen: true
+  application: Isaac_compare_replay_only; real target remains canonical nominal
+joints: [openarm_right_joint5]
+trajectory:
+  reference: measured right J5 position after fresh power-on
+  relative_waypoints_rad: [0.05, 0.0, -0.05, 0.0, 0.10, 0.0]
+  repetitions: 3
+  hold_s: 3.0
+  max_excursion_rad: 0.10
+  max_substep_rad: 0.025
+  real_publish_hz: 50.0
+  return: measured_start_position
+abort_gates:
+  - missing_real_or_sim_state_before_command
+  - no_accepted_receipt_per_waypoint
+  - simulation_tracking_error_over_0.01_rad
+  - stale_real_state_over_0.25_s
+  - operator_emergency_stop
+promotion_gate:
+  sim_tracking_abs_error_max_rad: 0.01
+  paired_emulated_minus_real_mae_no_worse_than_raw_nominal_mae: true
+  paired_emulated_minus_real_max_abs_rad_screening: 0.01
+outputs:
+  directory: alignment/results/openarm_right_j5_v4_independent_power_holdout_v1
+  raw_per_joint: openarm_right_joint5.json
+  summary: independent_power_holdout_summary.json

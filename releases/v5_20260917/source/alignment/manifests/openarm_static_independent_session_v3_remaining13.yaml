@@ -1,0 +1,57 @@
+# Frozen-v4 independent-power holdout for all arms except R J5, which already
+# passed its own v4 independent-power holdout.
+trial_id: openarm_static_independent_session_v3_remaining13
+mode: measure
+purpose: validate frozen static Isaac replay and collect physical direction/limit evidence
+scope: 13 arm joints; excludes openarm_right_joint5
+independent_power_session:
+  required: true
+  relation: fresh power cycle after all prior static trials
+  confirmation_environment: OPENARM_INDEPENDENT_POWER_CYCLE_CONFIRMED=1
+authorization:
+  real_authorization_required: true
+  can_recovery_authorized: true
+  motor_enable_authorized: true
+  router_enable_real: true
+  router_real_authorization_id: openarm_static_independent_session_v3_remaining13
+calibration_under_test:
+  path: alignment/calibrations/openarm_isaac_replay_calibration_v4_candidate_right_j5.json
+  sha256: e7ef68849b6d737ceea2dc45b783a9db33bbc258a818abc40ac82ac07d79cf68
+  frozen: true
+  application: isaac_compare_replay_only
+joints:
+  - openarm_left_joint1
+  - openarm_left_joint2
+  - openarm_left_joint3
+  - openarm_left_joint4
+  - openarm_left_joint5
+  - openarm_left_joint6
+  - openarm_left_joint7
+  - openarm_right_joint1
+  - openarm_right_joint2
+  - openarm_right_joint3
+  - openarm_right_joint4
+  - openarm_right_joint6
+  - openarm_right_joint7
+trajectory_per_joint:
+  reference: measured joint start position after fresh independent power-on
+  standard_relative_waypoints_rad: [0.05, 0.0, -0.05, 0.0, 0.10, 0.0]
+  joint4_relative_waypoints_rad: [0.05, 0.0, 0.10, 0.05, 0.0]
+  hold_s: 3.0
+  repetitions: 3
+  max_excursion_rad: 0.15
+  max_substep_rad: 0.025
+  return_to_measured_start: true
+gates:
+  fresh_real_and_sim_state: required
+  single_can_writer: required
+  real_motor_led_green_confirmed: required
+  sim_tracking_target: v4_emulated_target
+  sim_tracking_tolerance_rad: 0.01
+  abort_on: [missing_or_stale_state, receipt_missing, out_of_limit, per_joint_excursion_exceeds_0p15_rad, operator_stop]
+evidence:
+  required_per_joint: [raw_trajectory, nominal_and_emulated_target, receipts, real_and_sim_feedback, physical_direction_observation, limit_observation]
+outputs:
+  directory: alignment/results/openarm_static_independent_session_v3_remaining13
+  raw_per_joint: <joint>.json
+  promotion: per-axis only; do not refit frozen parameters in this trial

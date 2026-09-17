@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "selected_at_utc": "2026-09-16T08:40:15.888216+00:00",
+  "scope": "Isaac-only live runtime performance candidate",
+  "candidate_id": "min_frame_rate_10",
+  "min_frame_rate": 10
+}

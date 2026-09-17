@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "scope": "Isaac-only, live-session dynamic-drive candidate",
+  "selected_at_utc": "2026-09-16T07:36:40.955276+00:00",
+  "candidate_id": "j7_drive_p4",
+  "stiffness": 1500.0,
+  "damping": 70.0,
+  "max_force": 35.0
+}

@@ -1,0 +1,94 @@
+{
+  "kind": "openarm_real_isaac_gap_health",
+  "wall_time_unix_s": 1789634324.8360145,
+  "duration_s": 5.0,
+  "real": {
+    "topic": "/joint_states",
+    "received": true,
+    "message_count": 243,
+    "joint_name_count": 16,
+    "position_count": 16,
+    "mean_hz": 49.99993983727757,
+    "last_header_stamp": {
+      "sec": 1789634324,
+      "nanosec": 834047823
+    },
+    "joint_names": [
+      "openarm_left_finger_joint1",
+      "openarm_left_joint1",
+      "openarm_left_joint2",
+      "openarm_left_joint3",
+      "openarm_left_joint4",
+      "openarm_left_joint5",
+      "openarm_left_joint6",
+      "openarm_left_joint7",
+      "openarm_right_finger_joint1",
+      "openarm_right_joint1",
+      "openarm_right_joint2",
+      "openarm_right_joint3",
+      "openarm_right_joint4",
+      "openarm_right_joint5",
+      "openarm_right_joint6",
+      "openarm_right_joint7"
+    ]
+  },
+  "sim": {
+    "topic": "/sim/openarm/joint_states_v2",
+    "received": true,
+    "message_count": 157,
+    "joint_name_count": 18,
+    "position_count": 18,
+    "mean_hz": 32.9204159323057,
+    "last_header_stamp": {
+      "sec": 640,
+      "nanosec": 800033420
+    },
+    "joint_names": [
+      "openarm_left_joint1",
+      "openarm_right_joint1",
+      "openarm_left_joint2",
+      "openarm_right_joint2",
+      "openarm_left_joint3",
+      "openarm_right_joint3",
+      "openarm_left_joint4",
+      "openarm_right_joint4",
+      "openarm_left_joint5",
+      "openarm_right_joint5",
+      "openarm_left_joint6",
+      "openarm_right_joint6",
+      "openarm_left_joint7",
+      "openarm_right_joint7",
+      "openarm_left_finger_joint1",
+      "openarm_left_finger_joint2",
+      "openarm_right_finger_joint1",
+      "openarm_right_finger_joint2"
+    ]
+  },
+  "mapping": {
+    "path": "/home/tangyuan/openarm_ws/alignment/openarm_isaacsim_joint_map.json",
+    "version": "openarm-isaacsim-v0",
+    "canonical_joint_count": 16,
+    "valid": true,
+    "missing_real_keys": [],
+    "missing_sim_keys": [],
+    "missing_real_names": [],
+    "missing_sim_names": [],
+    "duplicate_real_names": [],
+    "duplicate_sim_names": [],
+    "unexpected_real_names": [],
+    "unexpected_sim_names": [],
+    "declared_sim_unmapped_dofs": [
+      "openarm_left_finger_joint2",
+      "openarm_right_finger_joint2"
+    ]
+  },
+  "command_route": {
+    "sim_command_topic": "/sim/openarm/timestamped_joint_command",
+    "sim_command_endpoint_present": true,
+    "sim_receipt_topic": "/sim/openarm/command_receipt",
+    "sim_receipt_endpoint_present": true
+  },
+  "state_ready": true,
+  "ready_for_measurement": true,
+  "safety": "read_only: this program publishes no command"
+}

@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "selected_at_utc": "2026-09-16T08:10:47.879943+00:00",
+  "scope": "Isaac-only live PhysicsScene candidate",
+  "candidate_id": "physics_hz_240",
+  "physx_time_steps_per_second": 240
+}

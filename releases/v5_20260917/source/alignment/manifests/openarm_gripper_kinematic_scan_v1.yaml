@@ -1,0 +1,32 @@
+trial_id: openarm_gripper_kinematic_scan_v1
+purpose: Calibrate each real pinch-gripper command joint to no-load physical opening width and record the paired Isaac finger state.
+physical_scope:
+  arms: hold at measured zero; no arm command is permitted
+  grippers: left then right, one side at a time
+  target_joint_ranges_rad:
+    openarm_left_finger_joint1: [0.08, 0.70]
+    openarm_right_finger_joint1: [-0.70, -0.08]
+  commanded_scalar_targets_rad:
+    left: [0.08, 0.24, 0.40, 0.56, 0.70, 0.56, 0.40, 0.24, 0.08]
+    right: [-0.08, -0.24, -0.40, -0.56, -0.70, -0.56, -0.40, -0.24, -0.08]
+  max_substep_rad: 0.010
+  hold_s_per_point: 3.0
+  return_behavior: Step back to the exact measured initial gripper position after each side; never command an arm joint.
+  nominal_motion_hold_duration_s: 54
+  total_duration: Operator-dependent because the runner pauses for one caliper reading at each of 18 points.
+  operator_measurement: At each held point, measure the minimum pad-to-pad opening with calipers and enter millimetres in the runner.
+safety_gates:
+  - Fresh real state containing 14 arm joints and both gripper joints.
+  - Fresh Isaac state containing its 18 named DOFs.
+  - Every real arm joint is within 0.03 rad of zero before any gripper command.
+  - One command publisher per real controller topic.
+  - CAN/profile/feedback/green-LED gate has passed and only one CAN writer owns the bus.
+  - Workspace clear, emergency stop operational, no object between the gripper fingers.
+abort_gates:
+  - Missing or stale real/Isaac feedback.
+  - Router rejection, out-of-limit target, duplicate publisher, or operator stop.
+  - Any arm joint leaves the zero tolerance during the scan.
+evidence:
+  output: alignment/results/openarm_gripper_kinematic_scan_v1/gripper_scan.json
+  required_fields: [command_rad, real_feedback_rad, sim_feedback_rad, measured_opening_mm, direction, receipt]
+promotion_rule: A width model remains a candidate until held-out intermediate points meet a declared opening tolerance.

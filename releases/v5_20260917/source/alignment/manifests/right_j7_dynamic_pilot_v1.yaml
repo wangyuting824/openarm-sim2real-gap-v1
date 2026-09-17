@@ -1,0 +1,27 @@
+# Approval required before this manifest may enable or command hardware.
+trial_id: openarm_real_sim_right_j7_dynamic_pilot_v1
+mode: dynamic_measurement
+joint_set: [openarm_right_joint7]
+static_replay: disabled_during_raw_capture
+trajectory:
+  reference: measured joint start position
+  signed_steps_rad: [0.025, -0.025, 0.050, -0.050]
+  repetitions: 3
+  hold_s: 2.0
+  return_hold_s: 2.0
+  real_publish_hz: 50
+limits:
+  max_step_rad: 0.05
+  max_excursion_rad: 0.15
+gates:
+  sim_only_tracking_passed: true
+  static_replay_confirmed_disabled: true
+  accepted_receipt_each_target_and_return: true
+  fresh_real_and_sim_state: true
+  can_up_feedback_increasing_green_led: true
+  one_active_command_publisher: true
+  operator_stop: true
+outputs:
+  raw: alignment/results/openarm_real_sim_right_j7_dynamic_pilot_v1/raw.json
+  analysis: alignment/results/openarm_real_sim_right_j7_dynamic_pilot_v1/dynamic_metrics.json
+  promotion: within_session_holdout_then_different_amplitude_or_ramp_then_independent_session

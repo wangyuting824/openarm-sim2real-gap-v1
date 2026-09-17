@@ -1,0 +1,42 @@
+trial_id: openarm_real_sim_right_j7_step_0p02_v1
+mode: measure
+canonical_action:
+  joint: openarm_right_joint7
+  target_rad: 0.02
+  return_target_rad: 0.0
+  hold_s: 3.0
+safety:
+  real_authorization_required: true
+  router_enable_real: true
+  router_real_authorization_id: openarm_real_sim_right_j7_step_0p02_v1
+  max_delta_rad: 0.03
+  real_state_max_age_s: 0.25
+  preconditions:
+    - emergency_stop_released_and_person_at_power_cutoff
+    - work_area_clear
+    - known_start_posture_near_zero
+    - exactly_one_real_bringup
+    - exactly_one_dual_target_router
+    - isaac_gap_status_state_and_bridge_true
+    - simulator_j7_tracking_passed
+  abort_on:
+    - stale_or_missing_real_joint_state
+    - target_outside_mechanical_limits
+    - target_delta_exceeds_0p03_rad
+    - more_than_one_real_command_publisher
+    - operator_stop
+recording:
+  real_state_topic: /joint_states
+  sim_state_topic: /sim/openarm/joint_states_v2
+  router_receipt_topic: /openarm/dual_command_receipt
+  sim_receipt_topic: /sim/openarm/command_receipt
+  output_directory: alignment/results/openarm_real_sim_right_j7_step_0p02_v1
+analysis:
+  compare_by: canonical_joint_name
+  report:
+    - command_to_receipt_delay
+    - command_to_first_state_delay
+    - real_sim_position_offset
+    - real_sim_tracking_error
+    - final_return_error
+    - receipt_flags

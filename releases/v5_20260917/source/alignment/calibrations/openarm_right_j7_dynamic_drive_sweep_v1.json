@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "kind": "openarm_isaac_dynamic_drive_sweep",
+  "scope": "Isaac-only candidate sweep; apply one candidate at a time through the daemon",
+  "joint": "openarm_right_joint7",
+  "baseline": {"candidate_id": "baseline", "stiffness": 100.0, "damping": 10.0, "max_force": 7.0},
+  "candidates": [
+    {"candidate_id": "j7_drive_p1", "stiffness": 300.0, "damping": 20.0, "max_force": 14.0},
+    {"candidate_id": "j7_drive_p2", "stiffness": 600.0, "damping": 35.0, "max_force": 21.0},
+    {"candidate_id": "j7_drive_p3", "stiffness": 1000.0, "damping": 50.0, "max_force": 28.0},
+    {"candidate_id": "j7_drive_p4", "stiffness": 1500.0, "damping": 70.0, "max_force": 35.0}
+  ],
+  "selection_gate": "target t90 0.10-0.15 s; no sustained oscillation; overshoot and steady-state tracking must remain within declared tolerance",
+  "physics_sweep": "deferred until drive-only sweep is evaluated; solver dt/substeps must be fingerprinted and changed independently"
+}

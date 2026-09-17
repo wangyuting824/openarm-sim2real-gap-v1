@@ -1,0 +1,17 @@
+{
+  "kind": "openarm_isaac_replay_partial_calibration_package",
+  "package_id": "openarm_isaac_replay_v4_right_j5_independent_power_v2",
+  "scope": "right J5 only; Isaac compare/replay only; not a 14-axis unified release",
+  "frozen_config_sha256": "e7ef68849b6d737ceea2dc45b783a9db33bbc258a818abc40ac82ac07d79cf68",
+  "trial_id": "openarm_right_j5_v4_independent_power_holdout_v2",
+  "status": "right_j5_independent_session_validated",
+  "files_sha256": {
+    "calibration.json": "e7ef68849b6d737ceea2dc45b783a9db33bbc258a818abc40ac82ac07d79cf68",
+    "trial_manifest.yaml": "9003fd9ac9c76496b6a85b3b277d33e7f5900e3eaf0deb2b779056713e1bae83",
+    "right_j5_raw.json": "dae8d0eb402c572195895529a1ce18d8764908216d96adabc94cce3e509b0f85",
+    "validation_summary.json": "6dff69a2c5ea11001c8e7556aedb0ecf47f47b0a313fb86f5185f44d3853bf48",
+    "preflight.json": "35d84c891982a95e0fc6e0ec7c41820bd5d74d4aed441ad4332611bcd2200687",
+    "trial.log": "61bb4ca00a7daa5078e1545cc35df9a76a6567a0a760406a80912f4341aa1128",
+    "router.log": "199073f1ec1515c2bb3b9f5c3c5a2a13150ac786484d160eebb1f6cedade5ce9"
+  }
+}

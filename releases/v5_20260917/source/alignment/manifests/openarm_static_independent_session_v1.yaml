@@ -1,0 +1,61 @@
+# Independent power-cycle validation.  This file freezes, rather than refits,
+# the existing v3 Isaac replay calibration.
+trial_id: openarm_static_independent_session_v1
+mode: measure
+authorization:
+  real_authorization_required: true
+  can_recovery_authorized: true
+  motor_enable_authorized: true
+  router_enable_real: true
+  router_real_authorization_id: openarm_static_independent_session_v1
+can_recovery:
+  host_role: real_can_host
+  interfaces: [can0, can1]
+  nominal_bitrate: 1000000
+  data_bitrate: 5000000
+  fd: true
+  required_expected_arm_ids_per_bus: [1, 2, 3, 4, 5, 6, 7]
+  existing_writer_action: stop_before_reconfigure
+motor_enable:
+  method: continuous_profiled_enable_heartbeat
+  position_command_before_feedback_validation: forbidden
+calibration_under_test:
+  path: alignment/calibrations/openarm_isaac_replay_calibration_v3.json
+  sha256: 660bce671fb68463ffe1925a9b603edf879586412edc508145d5c1e045a745ba
+  application: isaac_compare_replay_only
+  frozen: true
+  refit_during_trial: forbidden
+mapping_version: named-map-v1
+real_state_topic: /joint_states
+sim_state_topic: /sim/openarm/joint_states_v2
+sim_command_topic: /sim/openarm/timestamped_joint_command
+sim_receipt_topic: /sim/openarm/command_receipt
+joint_set: [openarm_left_joint1, openarm_left_joint2, openarm_left_joint3, openarm_left_joint4, openarm_left_joint5, openarm_left_joint6, openarm_left_joint7, openarm_right_joint1, openarm_right_joint2, openarm_right_joint3, openarm_right_joint4, openarm_right_joint5, openarm_right_joint6, openarm_right_joint7]
+trajectory_per_joint:
+  reference: measured joint start position after independent power-on
+  standard_waypoints_rad: [0.05, 0.0, -0.05, 0.0, 0.10, 0.0]
+  joint4_waypoints_rad: [0.05, 0.0, 0.10, 0.05, 0.0]
+  hold_s: 3.0
+  repetitions: 3
+  real_publish_hz: 50
+  max_excursion_rad: 0.15
+  max_substep_rad: 0.025
+gates:
+  fresh_feedback_and_named_joint_map: required
+  all_motor_leds_green_operator_confirmed: required
+  workspace_clear_and_estop_verified: required
+  one_active_command_publisher: required
+  compensation_replay_enabled_before_motion: required
+  accepted_real_and_sim_receipt_per_waypoint: required
+  sim_target_and_return_error_rad: 0.01
+  automatic_return_to_measured_start: required
+analysis:
+  comparison: raw_real_vs_frozen_v3_emulated_isaac
+  within_session_role: independent_session_validation
+  threshold_note: 0.01 rad is an Isaac tracking safety gate, not a universal real-world accuracy claim
+  promotion: record pass/fail by joint, direction, and amplitude; do not change a_b_h here
+outputs:
+  directory: alignment/results/openarm_static_independent_session_v1
+  preflight: preflight_health_domain42.json
+  raw_per_joint: <joint>.json
+  postprocess: independent_session_validation.json

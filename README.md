@@ -29,6 +29,10 @@ Use [`calibration_package/openarm_isaac_replay_calibration_v3/`](calibration_pac
 The packaged archive is
 `calibration_package/openarm_isaac_replay_calibration_v3.tar.gz`.
 
+## Skill package
+
+The reusable Codex skill is in [`skill/`](skill/). Version 0.6.4 includes the static–dynamic unified workflow, calibration lifecycle rules, dynamic-gap identification and Isaac replay rules, TF/TCP/gripper calibration, eye-in-hand solver, camera-container guidance, and third-person RealSense calibration guidance.
+
 ## Scope
 
 This release calibrates settled joint position response. It does not complete

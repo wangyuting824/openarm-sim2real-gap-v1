@@ -1,6 +1,8 @@
 ---
 name: openarm-sim2real-gap
 description: Measure, diagnose, and reduce the OpenArm/SO101 Isaac Sim-to-real gap for reusable manipulation skills or a Pi0.5 VLA agent. Use for real-plus-simulation ROS alignment, domain randomization, residual calibration, and evidence-backed sim-to-real evaluation; do not use for a simulator-only experiment.
+metadata:
+  skill_version: "0.6.4"
 ---
 
 # OpenArm Sim2Real Gap
@@ -24,12 +26,22 @@ Choose the smallest mode that answers the request:
 For the OpenArm + Isaac Sim v0 implementation, first read the project source of truth: `/home/tangyuan/openarm_ws/alignment/openarm_isaacsim_sim2real_integration.md`. It records the active topic contract, host split, issue IDs, repairs, and next iteration. For every engineering task, read [autonomous discovery and validation](references/discovery-and-validation.md) before choosing files, tests, or a repair. Read [the execution reference](references/execution.md) for generic topic contracts, evidence files, and physical-control gates. Read [the startup profiles](references/startup-profiles.md) before starting or recovering a process. Read [the Isaac tracking diagnostic](references/isaac-tracking-diagnostic.md) when receipt and feedback disagree. Read [the open-source resources](references/open-source-resources.md) when researching an observed Sim2Real issue. Read [the model reference](references/modeling.md) for randomization, residual learning, and evaluation design.
 Read [error classification and Isaac remediation](references/error-classification-and-remediation.md) after repeated paired joint measurements, before proposing any calibration or simulator change.
 Read [full-stack Sim2Real gap coverage](references/full-stack-gap-coverage_zh.md) before expanding from joint replay to perception, contact, task, reliability, or safety optimization.
+Read [动态 gap 识别与 Isaac replay](references/dynamic-gap-identification-and-replay_zh.md) before designing or applying any delay, bandwidth, velocity, jitter, or stateful dynamic correction.
+Read [静态—动态 gap 统一工作流](references/static-dynamic-gap-playbook_zh.md) first for the single decision path covering static validation, mapping, residuals, RTF, and dynamic promotion. Read [标定生命周期：同一上电、独立上电与动态推广](references/calibration-lifecycle_zh.md) for detailed protocol requirements before deciding whether a static, dynamic, randomization, or mapping result may be promoted, repaired, or used as a default.
+Read [TF、TCP 与夹爪执行器标定](references/tf-tcp-gripper-calibration_zh.md) before measuring or publishing robot-base transforms, TCP profiles, gripper opening mappings, limits, or contact-characterization ranges.
+Read [手部相机手眼标定](references/hand-eye-calibration_zh.md) before calibrating an eye-in-hand camera, solving `AX=XB`, or publishing a camera-to-tool TF. Use `scripts/hand_eye_calibrate.py` for the offline solver; it never commands a robot or writes a TF tree.
+Read [相机 ROS 容器启动规则](references/camera-container_zh.md) before starting a camera driver in Docker. Use `alignment/start_openarm_camera_container.sh` with an image that actually contains the selected driver; do not assume the Isaac ROS container or `ros:jazzy` can access a USB camera.
+Read [第三人称 RealSense 与真实硬件 gap](references/third-person-realsense-calibration_zh.md) before calibrating a fixed RGB-D camera, TCP, depth scale, or real-only control/dynamics parameters.
 
 Read [中文最小闭环流程](README_zh.md) for the current reusable OpenArm workflow.
 
+> **Portable workspace note:** references use `/home/tangyuan/openarm_ws` as the original deployment path. On another machine, resolve that path to the receiver’s OpenArm workspace before executing any referenced command.
+
 ## Agent operating contract
 
-Act as the integration engineer. Independently locate the current implementation, form an evidence-backed plan, execute read-only and simulation-only validations, and maintain the issue ledger. Do not stop after suggesting commands when an executable local validation is available. Before any real-hardware command, keep the action operator-gated; that is the only step that requires explicit trial authorization. The agent may autonomously start/recover Isaac and run simulator-only checks when it has execution access on that host. It must inspect existing processes and topic publishers first. It may not auto-launch real bringup, enable motors, clear faults, or switch a router to real mode: `start_real_openarm.sh` can enable motors and return the arms to zero.
+Act as the integration engineer. Independently locate the current implementation, form an evidence-backed plan, execute read-only and simulation-only validations, and maintain the issue ledger. Do not stop after suggesting commands when an executable local validation is available. Before any real-hardware command, require explicit named-trial authorization. The agent may autonomously start/recover Isaac and run simulator-only checks when it has execution access on that host. It must inspect existing processes and topic publishers first.
+
+When a named authorization explicitly includes **motor enable**, the agent must not stop merely because motors are unpowered. On the recorded real/CAN host it must proactively run the bounded enable-validation sequence in the deployed hardware profile, verify fresh feedback and the safety gates below, then continue the already authorized preflight and trajectory. It may not guess IDs, motor types, CAN settings or enable frames; it may not clear faults; and it must stop for a new authorization when the recorded profile, CAN response, LED confirmation, or any safety gate is absent or fails. `start_real_openarm.sh` can enable motors and return arms to zero, so invoke it only when its exact behavior is covered by the named authorization.
 
 ## OpenArm + Isaac Sim v0 route
 
@@ -72,19 +84,31 @@ host (never on the separate Isaac host):
    `BUS-OFF`/error-passive, its RX counter increases, and a capture shows
    response frames on **each** selected bus.  Motor IDs/types must match the
    deployed hardware profile, not merely a source-code default.
-4. Require the operator to confirm the physical LEDs are green.  A red LED,
-   missing response frames, stale/all-default feedback, or an unexpected CAN
-   error is a failed safety gate.  Stop there: do not issue a position,
-   zeroing, or router command and do not include the result in gap fitting.
+4. If this OpenArm profile requires a continuous enable heartbeat, maintain the
+   recorded heartbeat frame and rate through the enable-validation window. A
+   single transmitted enable frame or a success log line is not evidence that
+   motors remain enabled. Verify every expected motor ID responds stably while
+   the heartbeat is active.
+5. Require the operator to confirm the physical LEDs are green. A red LED,
+   missing expected-ID response frames, stale/all-default feedback, heartbeat
+   loss, or an unexpected CAN error is a failed safety gate. Stop the heartbeat
+   and do not issue a position, zeroing, or router command; do not include the
+   result in gap fitting.
 5. Record the enable evidence (host, bus state/counters, profile, capture
    summary, and operator LED result) next to the trial preflight.  Only then
    start the guarded trajectory with its existing rate, bound, tracking, and
    return gates.
 
-If the gate fails, perform only read-only diagnostics of DC supply, emergency
-stop/safety chain, CANH/CANL and termination, CAN bitrate/FD mode, and the
-motor profile.  Do not retry enable with guessed IDs, motor types, gains, or
-position commands.  A corrected profile or a retry needs a new named approval.
+If the gate fails because a recorded CAN interface is `DOWN` or `STOPPED`, and
+the named manifest authorizes CAN recovery, proactively stop the sole existing
+CAN writer, restore that interface using the recorded bitrate/FD profile, and
+verify `UP`, profile consistency, and every expected motor-ID response before
+restarting the enable gate. Record the recovery result. Do not use guessed IDs,
+motor types, rates, or position commands, and do not keep retrying a failed
+recovery. If the failure is not an authorized recorded-profile recovery case,
+perform only read-only diagnostics of DC supply, emergency stop/safety chain,
+CANH/CANL and termination, CAN bitrate/FD mode, and the motor profile. A
+corrected profile or a retry needs a new named approval.
 
 When a real trial is requested but authorization is absent, the agent must prepare a named manifest and a reviewable authorization request first. It may run read-only health and simulator-only validation while waiting, but may not launch `start_real_openarm.sh`, enable motors, or create an `enable_real:=true` router. The request must name the exact trial ID, joints, trajectory, maximum excursion, rate, return behavior, abort gates, expected duration, and the operator’s required emergency-stop/workspace/power-disconnect/single-publisher confirmations. Treat approval as single-use and stop after any failed safety gate; prepare a new request for a changed trajectory or retry.
 
@@ -246,6 +270,122 @@ status before simulator-only replay. A replay result verifies the bridge and
 Isaac tracking; task-level claims still require independent real task evidence
 such as end-effector error, contacts, and success rate.
 
+## Dynamic-gap identification and replay contract
+
+Do not estimate dynamic delay from a settled endpoint or mix static replay into a raw dynamic paired measurement. During raw dynamic identification, disable Isaac static compensation replay so real and Isaac receive the same canonical target; retain the static artifact only for offline separation. Record router receipt, same-recorder monotonic state-arrival times, ROS stamps, baseline/noise windows, and steady-state windows for both endpoints. Normalize each response with its own measured `q0` and `q∞`, then compare onset, t10/t50/t90/t95, settling, peak velocity and overshoot from the same receipt reference.
+
+Use a bounded single-axis pilot before a full bimanual dynamic study. A dynamic manifest must state signed step amplitudes, repetitions, hold/return time, rate, maximum excursion, automatic return, time-series recording, and every abort gate. A held step response may use one bounded step; do not replace it with small command substeps, which alters the input and hides bandwidth. Per-joint data requires three repetitions: fit on two, reserve one as `within_session_holdout`, then validate a different amplitude or ramp and an independent powered session before promotion.
+
+Classify a near-constant onset/t90 shift with matching normalized shape as command/observation delay, a shape/rise/peak-velocity change as bandwidth or rate/limit mismatch, directional curve differences as friction/backlash dynamics, and high repeat variance as jitter/randomization. Apply accepted terms only on Isaac: versioned command or observation FIFO, matched rate/zero-order hold, bounded velocity/acceleration/jerk or first-order response, or measured randomization. Never block the Isaac update callback to create delay, and never write a dynamic candidate to the real command path. Every dynamic configuration must state its position/velocity/payload/temperature/control-rate validity domain and evidence hashes; unset terms are `not_identified`.
+
+For the current OpenArm route, use `alignment/measure_real_sim_dynamic_identification.py` only behind an already authorized router and analyse its raw JSON with `alignment/analyze_dynamic_gap.py`. The pilot definition is `alignment/manifests/right_j7_dynamic_pilot_v1.yaml`; it is a review artifact, not authorization. Run static/synthetic and Isaac-only checks first.
+
 ## Deliverables
 
 For each completed mode, leave reproducible artifacts: configuration, topic mapping, timestamped raw data or bag, metrics, and a concise result entry. Include domain-randomization seed/ranges and real-data provenance for any learned model. State what remains unmeasured rather than inferring real-world performance from Isaac-only results.
+
+## Gripper calibration workflow
+
+The repository has an OpenArm-specific protocol and guarded runner at
+`alignment/gripper_kinematic_calibration_protocol_zh.md`,
+`alignment/start_homed_gripper_kinematic_scan_v1.sh`, and
+`alignment/run_openarm_gripper_kinematic_scan_v1.sh`. These are the current
+project tools; no vendor-supplied routine was found in the workspace that
+produces a validated opening-width calibration package. Do not describe the
+protocol as an official OpenArm calibration standard.
+
+Run a gripper trial as one state machine, in this order:
+
+1. Confirm the named side, no-load condition, clear workspace, emergency-stop
+   readiness, green status, physical authorization token, and one command
+   publisher. Refuse when another bringup, KER teleop, router, or duplicate
+   `ros2_control_node` is active.
+2. Bring up CAN-FD and exactly one real control stack. Require both CAN
+   interfaces `UP`, hardware activation, automatic return-to-zero, and a
+   three-second zero-settle feedback gate before moving the gripper.
+3. Keep the arm at zero and scan only the selected gripper. The v2 pinch
+   gripper has one commanded `finger_joint1`; the second finger is mimic. Use
+   bounded position targets `0`, `-0.20`, `-0.40`, `-0.60`, `-0.7854` rad for
+   closed through fully open, subject to the measured mechanical stop. Hold
+   each point for at least three seconds and record command, feedback, ROS
+   monotonic time, caliper opening in mm, and operator observation.
+4. Repeat the points in reverse order to measure hysteresis/backlash. Stop on
+   unexpected motion, contact, feedback loss, limit violation, CAN error, or
+   disagreement between command and feedback; never exceed the URDF/software
+   limit.
+5. Fit `q_rad -> opening_width_m` separately for opening and closing paths,
+   retain raw samples and a held-out intermediate point, and report MAE,
+   maximum error, monotonicity, hysteresis, and the valid range. A no-load scan
+   does not identify gripping force or task success.
+6. Validate the same master/mimic and opening definition in Isaac-only replay.
+   Publish a versioned gripper package only after held-out error and a declared
+   task tolerance pass. Until then mark it `gripper_kinematic_candidate`.
+   Always return to the safe zero/closed state and save the result manifest.
+
+The runner must not silently guess motor IDs, enable frames, side mapping, or
+opening direction. A shell `ros2 topic pub` command is a manual diagnostic,
+not a completed calibration run; it cannot replace the timestamped scan
+artifacts and zero/feedback gates above.
+
+## Isaac-only dynamic drive attribution and tuning
+
+When paired dynamic evidence has `real−Isaac t90 < 0` with magnitude substantially larger than onset difference, Isaac is slower than real. Do not add a delay FIFO. Before changing any drive setting, instrument and retain the four Isaac monotonic timestamps: `command_received`, `target_applied`, `first_physics_response`, and `state_published`. Attribute a slow curve to drive/physics only when target application is prompt and the `target_applied → first_physics_response` interval remains slow; otherwise repair the bridge or state publisher first.
+
+For this case, use a simulator-only, reversible live-session sweep before any persistent asset edit. Change one group of parameters at a time: first stiffness/damping/max force, then separately physics dt/substeps with a scene fingerprint. Measure the same bounded signed steps at least three times, require the target t90 band and declared overshoot/steady-state gates, then repeat with a different amplitude and return curve. If no candidate passes, keep `no_candidate_passed` and do not write a USD layer. A passing candidate is still only a candidate until an independent powered-session validation. Persist only a separate versioned USD override/calibration layer with the parameters, scene fingerprint, timing evidence and SHA-256; never modify the base USD. Enable static compare/replay only after raw dynamic capture is complete and validate static plus dynamic layers together in Isaac-only replay.
+
+## All-axis dynamic-gap elimination rule
+
+Apply the dynamic attribution workflow to every arm joint, but never copy J7 or another joint's drive values across axes. First collect an unmodified Isaac-only dynamic baseline for all 14 joints with static replay disabled and a real-disabled router. This baseline ranks simulator response times but does not establish a real-minus-Isaac gap. Only an axis that also has valid paired raw real/Isaac dynamics may receive a signed dynamic target and an Isaac-side tuning study.
+
+For each eligible axis, retain this sequence: (1) read drive and physics fingerprint, including velocity limits, solver, dt, substeps, iterations and gravity; (2) test one parameter family at a time, beginning with drive or velocity/control rate; (3) separately scan physics dt/substeps; (4) after every candidate, measure t90, onset, overshoot and steady-state error on the same bounded curve; (5) verify a passing candidate on a different amplitude and return curve; (6) persist only an independent versioned USD override/calibration layer. Never modify the base USD, URDF, or real controller. If no candidate passes, preserve the no-pass evidence and diagnose the next parameter family rather than escalating gains indefinitely.
+
+When the all-axis Isaac-only baseline shows broadly slow t90, inspect the shared PhysicsScene before fitting per-joint gains. A high `physxJoint:maxJointVelocity` relative to the required step speed and a high solver-iteration setting rule out those specific limits as the first bottleneck; record that evidence. Scan `physxScene:timeStepsPerSecond` as a separate, reversible live-session candidate (for example 60, 120, then 240 Hz), with all joint drives held at baseline. Measure the same bounded curve after every rate, restore the snapshot on failure, and only propagate a selected shared scene setting after the all-axis validation and separate static-replay joint checks pass. Treat malformed or contradictory gravity fields as a scene-integrity audit item, not a basis for automatically changing gravity.
+
+Before interpreting wall-clock t90 as a joint drive defect, measure actual PhysX step-time progress against monotonic wall time over a fixed window, along with Kit update rate and frame-interval jitter. The UI timeline time is supplementary only and must not substitute for a physics-step clock when it is stationary or inconsistent. Publish or retain wall-clock and physics-time t90 for every dynamic candidate. A physics real-time factor below 0.95 is a host/rendering/scene-performance finding that can itself create a deployment-rate and observation-age Sim2Real gap; resolve or explicitly constrain it before fitting drive gains. A near-one physics real-time factor with a slow physics-time t90 instead supports a drive/control/physics diagnosis. When physics time falls behind wall time, read and retain `/persistent/simulation/minFrameRate` and `/app/runLoops/main/rateLimitFrequency` together with the scene dt: the PhysX minimum-frame-rate clamp can cap catch-up substeps after slow app frames, making the simulation run in slow motion. Compare GUI, headless/no-viewport, and sensors-disabled probes before changing robot drives or USD physics parameters. If the app rate is below the configured minimum-frame-rate clamp while the separate app rate-limit setting is above the achieved rate, scan lower allowlisted min-frame-rate values in a reversible live session, measuring physics real-time factor after each candidate and restoring the snapshot on failure. A clamp scan is diagnostic only: its success permits catch-up steps but does not cure rendering or sensor overload.
+
+## OpenArm dynamic-gap correction contract
+
+Apply this contract whenever a paired OpenArm dynamic trial is used to tune
+Isaac drive, rate limits, delay buffers, or a dynamic override layer.
+
+1. **Separate static from dynamic.** Disable static compare/replay during raw
+   paired capture so both endpoints receive the same canonical target.  Measure
+   each endpoint against its own pre-step and steady-state values.  Do not turn
+   a settled-position residual into a timing term.
+2. **Use two time bases.** Record wall time for end-to-end deployment behavior
+   and accumulated PhysX time for Isaac model response.  The UI timeline API is
+   not a valid fallback when it is stationary while PhysX step callbacks run.
+   Capture `command_received`, `target_applied`, `first_physics_response`, and
+   `state_published`; `target_applied_physics_s` is the start time for
+   physics-time response metrics.
+3. **Gate correction on runtime validity.** Before classifying or tuning a
+   dynamic candidate, measure `physics_realtime_factor`.  If it is below 0.95,
+   report wall-time results as diagnostic only and do not tune or persist a
+   drive/delay correction.  First isolate GUI viewport, Replicator/RTX sensor,
+   scene, CPU, and GPU load.  Disabling the interactive viewport is allowed
+   during simulator-only or RL collection and does not disable the policy's
+   Replicator render product.
+4. **Classify with physics-time curves.** Require at least eight valid paired
+   step responses across the first two repetitions plus a third held-out
+   repetition.  Compare onset, t10/t50/t90/t95, overshoot, settling, and return
+   behavior.  A nearly constant timing shift with matched response shape is a
+   bounded command/observation buffer candidate.  A t90/overshoot/peak-speed
+   discrepancy after comparable onset is a drive, limit, interpolation, or
+   control-rate candidate.  Do not add a FIFO when Isaac is slower because of
+   bandwidth or runtime load.
+5. **Change one Isaac factor at a time.** Scan drive stiffness/damping/max
+   force, command/control update rate, velocity/acceleration/jerk limits, and
+   physics dt/substeps/solver separately.  Each candidate is live-session only
+   and must retain curves for t90, overshoot, steady-state error, and RTF.
+6. **Promote conservatively.** A candidate must pass the held-out repetition,
+   a distinct amplitude or ramp, and an independent powered/session validation.
+   Only then write a versioned, independent USD override/calibration layer with
+   parameter values, valid domain, scene/config hashes, response curves, and
+   evidence hashes.  Never edit the base USD and never apply a fitted dynamic
+   correction to the real command path without a separate named physical
+   authorization.
+
+For the current workspace, run `alignment/validate_dynamic_correction_gate.py`
+after analysis.  A nonzero exit code is a hard stop for dynamic-parameter
+promotion; preserve the results and repair runtime or measurement evidence
+first.

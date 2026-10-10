@@ -1,5 +1,7 @@
 # OpenArm Isaac Sim2Real 最小闭环流程
 
+Skill version: `0.6.3`（新增手部相机 eye-in-hand 手眼标定、离线求解器、相机容器规则、USB 视频映射与原始画面验收记录）。
+
 本流程将真实机械臂的可重复关节误差做成 **Isaac compare/replay 标定**。它不改真机命令、USD、URDF 或 Isaac drive。
 
 ## 产物
@@ -41,3 +43,11 @@ ros2 service call /openarm/isaac_gap/enable_compensation_replay std_srvs/srv/Tri
 ```
 
 真实命令永远不由该标定文件触发。对 provisional 轴进行新的真实复验，需要新的逐次授权。
+
+## 动态 gap 闭环
+
+静态 v3 只复现稳态关节位置。动态标定必须在关闭 static replay 的原始同目标条件下，使用带时间戳的阶跃或斜坡响应识别 delay、带宽、方向相关动态和抖动；再把通过验证的项加到 Isaac 的 command/observation buffer、控制率、限速或随机化层。完整协议见 [动态 gap 识别与 Isaac replay](references/dynamic-gap-identification-and-replay_zh.md)。
+
+## 手部相机手眼标定
+
+手部相机采用独立的 eye-in-hand 流程：固定标定板，记录 `T_base_tool` 与同步的 `T_camera_target`，离线求解 `T_tool_camera`，再用留出姿态检查 target 在 base 中的一致性。规则、门槛和证据字段见 [手部相机手眼标定](references/hand-eye-calibration_zh.md)；求解器为 `scripts/hand_eye_calibrate.py`，不会启动电机或发布 TF。

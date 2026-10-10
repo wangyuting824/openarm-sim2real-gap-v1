@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenArm Isaac Sim2Real"
+  short_description: "Run safe OpenArm-to-Isaac Sim gap workflows"
+  default_prompt: "Use the OpenArm × Isaac Sim integration workflow to diagnose or measure the Sim2Real gap, keeping real-hardware actions operator-gated."
